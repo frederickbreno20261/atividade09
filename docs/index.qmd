@@ -1,6 +1,6 @@
 ---
 title: "**PRÁTICA ESTATÍSTICA II**"
-subtitle: "**Sintomas depressivos e o uso de substâncias psicoativas em adolescentes**"
+subtitle: "**ATIVIDADE AVALIATIVA 4**"
 author: "Frederick (<fchame@id.uff.br>) <br> Breno (<brenoborges@id.uff.br>)"
 date: today
 date-format: "12/04/2026"
@@ -32,18 +32,18 @@ Sobre o artigo
 ::: box-purple
 **TÍTULO**
 
-Sintomas depressivos e o uso de substâncias psicoativas durante a vida em adolescentes.
+Parâmetros morfológicos e funcionais de indivíduos iniciantes de exercícios físicos em uma academia de Porto Velho-RO.
 :::
 
 **Autores:**
-Tânia Moraes Ramos Andrade e Irani Iracema De Lima Argimon.
+José Nunes da Silva Filho, Alex França Oliveira, José Roberto de Maio Godoi Filho, Luiz Gonzaga de Oliveira Gonçalves e Edson dos Santos Farias.
 
 ## **MOTIVAÇÃO DA PESQUISA**
 
 ::: box-blue
-- A adolescência é um período crítico para o surgimento de transtornos psiquiátricos, sendo a depressão um dos mais incidentes.
-- A distinção entre oscilações normais de humor e quadros depressivos é clinicamente complexa.
-- A depressão na juventude frequentemente apresenta comorbidades, destacando-se o uso de substâncias psicoativas como fator agravante.
+- O sedentarismo e o envelhecimento populacional têm reduzido a aptidão física relacionada à saúde.
+- Níveis baixos de aptidão física são preditores de doenças crônicas não transmissíveis.
+- Entender o perfil inicial de alunos em academias permite que profissionais de saúde (educadores físicos e fisioterapeutas) prescrevam exercícios de forma segura e individualizada.
 :::
 
 ## **OBJETIVOS**
@@ -55,7 +55,7 @@ Meta do estudo
 ::: box-green
 **OBJETIVO GERAL**
 
-Investigar a associação entre a presença de sintomas depressivos e o consumo de substâncias psicoativas (álcool, tabaco, maconha, cocaína, entre outras) ao longo da vida em adolescentes.
+Verificar e comparar as variáveis morfológicas (composição corporal) e funcionais (flexibilidade e força) de indivíduos iniciantes em uma academia, estratificados por faixa etária.
 :::
 
 ## **A AMOSTRA**
@@ -63,11 +63,12 @@ Investigar a associação entre a presença de sintomas depressivos e o consumo 
 :::: columns
 
 ::: {.column width="50%"}
-### Coleta
-- Amostra por conveniência.
-- **706 adolescentes** analisados.
-- Escola Pública ($n=353$) e Privada ($n=353$).
-- Local: Porto Alegre-RS.
+### Composição
+- **120 alunos iniciantes** em Porto Velho-RO.
+- Divididos em 3 grupos:
+  - **G1:** 20-29 anos ($n=40$).
+  - **G2:** 30-39 anos ($n=40$).
+  - **G3:** 40-50 anos ($n=40$).
 :::
 
 ::: {.column width="10%"}
@@ -75,80 +76,86 @@ Investigar a associação entre a presença de sintomas depressivos e o consumo 
 
 ::: {.column width="40%"}
 ### Procedimento
-- Aplicação coletiva em sala de aula.
-- Instrumentos: BDI (Inventário de Beck) e ficha sociodemográfica.
+- Estudo transversal descritivo.
+- Coleta entre Março e Abril de 2014.
+- Critério: Alunos com menos de 1 mês de prática.
 :::
 
 ::::
 
 # **CAPÍTULO 2: METODOLOGIA ESTATÍSTICA**
 
-## **MÉTODOS ENSINADOS EM SALA**
+## **VARIÁVEIS ANALISADAS**
 
-Dos métodos listados para a disciplina, o artigo utiliza os seguintes para fundamentar suas decisões:
-
-::: box-orange
-- **Teste t de Student:** Utilizado para comparar as médias de sintomas depressivos entre dois grupos independentes (ex: usuários vs. não usuários; meninos vs. meninas).
-- **Teste Qui-Quadrado de Pearson / Exato de Fisher:** Aplicados para verificar associações entre variáveis categóricas (presença de sintomas e tipo de escola).
-- **Correlação de Pearson:** Para avaliar a força da relação linear entre a intensidade dos sintomas e variáveis quantitativas.
+::: section-label
+O que foi medido
 :::
 
-## **TESTES DE ASSOCIAÇÃO**
+::: box-orange
+- **Morfológicas:** Massa corporal, Estatura, IMC, % de Gordura e Massa Magra (via protocolos de dobras cutâneas).
+- **Funcionais:** - Flexibilidade (Teste de Sentar e Alcançar de Wells).
+  - Resistência Muscular (Flexão de Braços e Abdominais).
+:::
 
-Para a análise inferencial, a decisão baseou-se no nível de significância:
+## **MÉTRICAS E PREMISSAS**
 
+Antes da análise principal, o estudo verificou as premissas ensinadas em sala:
+
+- **Teste de Shapiro-Wilk:** Para verificar a normalidade da distribuição dos dados.
+- **Teste de Levene:** Para avaliar a homogeneidade das variâncias (homocedasticidade).
+
+Se estas premissas fossem atendidas, procedia-se para o teste de comparação de médias.
+
+## **TESTES DE COMPARAÇÃO (ANOVA)**
+
+Para comparar os três grupos de idade (G1, G2 e G3), utilizou-se:
+
+- **ANOVA One-Way (Unidirecional):** Para identificar se existiam diferenças entre as médias das variáveis.
+- **Post-hoc de Tukey:** Aplicado quando a ANOVA indicava significância, para identificar exatamente quais pares de grupos diferiam entre si.
+
+Nível de significância adotado:
 $$\alpha = 0,05 \text{ (ou 5%)} $$ [1]
 
-As premissas de normalidade para a aplicação do **Teste T** foram assumidas para a comparação de médias das pontuações totais do Inventário de Beck (BDI).
+# **CAPÍTULO 3: RESULTADOS**
 
-# **CAPÍTULO 3: RESULTADOS (TESTE T E ASSOCIAÇÕES)**
+## **RESULTADOS MORFOLÓGICOS (ANOVA)**
 
-## **DIFERENÇAS POR GÊNERO (TESTE T)**
+Abaixo, os resultados onde a **ANOVA** identificou diferenças estatísticas entre as idades:
 
-O estudo aplicou o **Teste t de Student** para comparar os escores médios de sintomas depressivos entre os sexos:
+| Variável | Valor de $F$ | Valor de $p$ | Diferença Sig. |
+|----------|:------------:|:------------:|:--------------:|
+| IMC      | $5,821$ [2]  | $0,004$ [3]  | G3 > G1        |
+| % Gordura| $13,42$ [4]  | $0,000$ [5]  | G3 > G1 e G2   |
 
 ::: box-blue
-- **Meninas:** Média de sintomas significativamente superior.
-- **Resultado:** $t = -7,759$ [2]
-- **Significância:** $p < 0,001$ [3]
+**Interpretação:** O teste de Tukey revelou que o grupo mais velho (G3) possui maior acúmulo de gordura e maior IMC em relação aos mais jovens, sugerindo um declínio na composição corporal com o avanço da idade.
 :::
 
-**Interpretação:** Há evidências estatísticas para rejeitar a hipótese nula, confirmando que o gênero influencia a intensidade dos sintomas na amostra estudada.
+## **RESULTADOS FUNCIONAIS (ANOVA/TUKEY)**
 
-## **USO DE SUBSTÂNCIAS (TESTE T)**
-
-A comparação de médias revelou que adolescentes que já utilizaram substâncias apresentam escores de depressão mais elevados:
-
-| Grupo | Valor de $t$ | Valor de $p$ | Decisão |
-|-------|:------------:|:------------:|:-------:|
-| Uso de Substâncias vs. Não Uso | $2,248$ [4] | $0,025$ [5] | **Significativo** |
-
-### **Detalhes por Substância (Médias BDI)**
-- **Tabaco:** Usuários (10,38) vs. Não-usuários (8,27) -> $p = 0,010$ [6].
-- **Álcool:** Usuários (9,16) vs. Não-usuários (7,50) -> $p = 0,024$ [7].
-
-## **SINTOMAS VS. ESCOLA (QUI-QUADRADO)**
-
-Ao associar a presença de sintomas (categórica) com o tipo de escola (Pública vs. Privada):
+A aptidão funcional também apresentou declínio significativo:
 
 ::: box-orange
-- **Teste Qui-Quadrado de Pearson:** Revelou que não houve diferença significativa na prevalência de sintomas depressivos entre alunos de escolas públicas e privadas.
-- **Resultado:** $p = 0,729$ [8]
+- **Flexibilidade:** A ANOVA indicou $p = 0,000$ [6]. O teste de Tukey confirmou que o G3 é significativamente menos flexível que o G1 e G2.
+- **Resistência (Flexão):** Redução clara no desempenho do G3 em relação ao G1 ($p = 0,001$ [7]).
+- **Abdominais:** O desempenho médio caiu de 31 (G1) para 20 (G3) repetições ($p = 0,000$ [8]).
 :::
 
-> **Nota:** A prevalência geral de sintomas na amostra foi de **28%**.
+<br>
+
+> A **ANOVA** confirmou que a capacidade funcional diminui de forma linear conforme a faixa etária aumenta.
 
 # **CAPÍTULO 4: CONCLUSÃO**
 
 ## **SÍNTESE DOS ACHADOS**
 
 ::: box-purple
-- [x] O **Teste T** confirmou que o uso de álcool, tabaco e cocaína está associado a médias mais altas de sintomas depressivos.
-- [x] O gênero feminino apresenta vulnerabilidade estatística superior nesta amostra.
-- [x] A estatística permitiu identificar que, embora a escola não seja um fator diferencial, o comportamento de consumo de substâncias é um marcador de risco psíquico.
+- [x] **Declínio Morfológico:** Aumento do % de gordura e IMC com a idade.
+- [x] **Perda Funcional:** Redução drástica na flexibilidade e força muscular no grupo de 40-50 anos.
+- [x] **Validação Estatística:** O uso da ANOVA e Tukey permitiu confirmar que o envelhecimento, mesmo em iniciantes, já impõe barreiras físicas claras.
 :::
 
 ## **CONTRIBUIÇÃO PARA A SOCIEDADE**
 
-- **Importância dos Testes de Hipótese:** A aplicação do Teste T e Qui-Quadrado permitiu sair do campo do "eu acho" para o campo das evidências, isolando os fatores que realmente impactam a saúde mental do jovem.
-- **Impacto Social:** Os dados fundamentam a necessidade de intervenções focadas no gênero feminino e no controle do tabagismo e alcoolismo como formas indiretas de prevenir o agravamento de quadros depressivos na adolescência.
+- **Importância dos Testes:** A ANOVA permitiu estratificar o risco por idade, provando que um iniciante de 45 anos não pode receber a mesma carga de treino que um de 20.
+- **Impacto Social:** O estudo destaca a importância da avaliação física prévia em academias. Ao identificar as deficiências funcionais (como a baixa flexibilidade em G3), evita-se lesões e promove-se uma longevidade ativa e saudável para a população de Porto Velho.

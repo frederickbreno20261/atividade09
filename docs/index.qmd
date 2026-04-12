@@ -1,9 +1,9 @@
 ---
 title: "**PRÁTICA ESTATÍSTICA II**"
-subtitle: "**ATIVIDADE AVALIATIVA 4**"
+subtitle: "**Sintomas depressivos e o uso de substâncias psicoativas em adolescentes**"
 author: "Frederick (<fchame@id.uff.br>) <br> Breno (<brenoborges@id.uff.br>)"
 date: today
-date-format: "23/03/2026"
+date-format: "12/04/2026"
 institute: "Universidade Federal Fluminense"
 format:
   revealjs:
@@ -32,19 +32,18 @@ Sobre o artigo
 ::: box-purple
 **TÍTULO**
 
-Qualidade de sono e dores musculoesqueléticas em adolescentes: estudo observacional.
+Sintomas depressivos e o uso de substâncias psicoativas durante a vida em adolescentes.
 :::
 
 **Autores:**
-Jéssica Fernanda de Oliveira Lima Batista, Thais Costa de Alencar, Janaína Maria Gomes Fonseca Tolêdo, Kelly Rodrigues Mota, Valdeci Elias dos Santos-Júnior e Mônica Vilela Heimer.
+Tânia Moraes Ramos Andrade e Irani Iracema De Lima Argimon.
 
 ## **MOTIVAÇÃO DA PESQUISA**
 
 ::: box-blue
-- O sono é uma necessidade fisiológica essencial para o bem-estar da saúde geral do indivíduo.
-- A adolescência é um período de maturação do sistema nervoso e mudanças biológicas e sociais, tornando-a mais vulnerável a distúrbios do sono.
-- O uso excessivo de tecnologia e mídias pode dificultar a ação reparadora do sono e gerar manifestações dolorosas.
-- Estudos sugerem a existência de uma relação entre dores musculoesqueléticas (DME) e qualidade de sono, configurando um processo biopsicossocial.
+- A adolescência é um período crítico para o surgimento de transtornos psiquiátricos, sendo a depressão um dos mais incidentes.
+- A distinção entre oscilações normais de humor e quadros depressivos é clinicamente complexa.
+- A depressão na juventude frequentemente apresenta comorbidades, destacando-se o uso de substâncias psicoativas como fator agravante.
 :::
 
 ## **OBJETIVOS**
@@ -56,7 +55,7 @@ Meta do estudo
 ::: box-green
 **OBJETIVO GERAL**
 
-Analisar a associação entre a má qualidade de sono e as dores musculoesqueléticas (DME) em adolescentes.
+Investigar a associação entre a presença de sintomas depressivos e o consumo de substâncias psicoativas (álcool, tabaco, maconha, cocaína, entre outras) ao longo da vida em adolescentes.
 :::
 
 ## **A AMOSTRA**
@@ -65,12 +64,10 @@ Analisar a associação entre a má qualidade de sono e as dores musculoesquelé
 
 ::: {.column width="50%"}
 ### Coleta
-- Amostragem por conglomerados em
-duas etapas (escolas e turmas).
-- **545 adolescentes** analisados.
-- Faixa etária: **11 a 15 anos**.
-- Escolas públicas de Recife-PE.
-- Entre outubro e novembro de 2018 
+- Amostra por conveniência.
+- **706 adolescentes** analisados.
+- Escola Pública ($n=353$) e Privada ($n=353$).
+- Local: Porto Alegre-RS.
 :::
 
 ::: {.column width="10%"}
@@ -78,97 +75,80 @@ duas etapas (escolas e turmas).
 
 ::: {.column width="40%"}
 ### Procedimento
-- Amostragem por conglomerados em duas etapas (escolas e turmas).
-- Aplicação de questionários em sala de aula sob sigilo.
+- Aplicação coletiva em sala de aula.
+- Instrumentos: BDI (Inventário de Beck) e ficha sociodemográfica.
 :::
 
 ::::
 
 # **CAPÍTULO 2: METODOLOGIA ESTATÍSTICA**
 
+## **MÉTODOS ENSINADOS EM SALA**
 
-## **VARIÁVEIS ANALISADAS**
-
-
-::: section-label
-O que foi medido
-:::
+Dos métodos listados para a disciplina, o artigo utiliza os seguintes para fundamentar suas decisões:
 
 ::: box-orange
-- **Desfecho (DME):** Avaliada pelo Questionário Nórdico de Sintomas Osteomusculares (QNSO).
-- **Exposição (Sono):** Qualidade medida pelo Índice de Pittsburgh (PSQI) e sonolência pela Escala de Epworth (ESE).
-- **Sociodemográficas:** Idade, sexo, escolaridadem situação marital e situação profissional do responsável.
+- **Teste t de Student:** Utilizado para comparar as médias de sintomas depressivos entre dois grupos independentes (ex: usuários vs. não usuários; meninos vs. meninas).
+- **Teste Qui-Quadrado de Pearson / Exato de Fisher:** Aplicados para verificar associações entre variáveis categóricas (presença de sintomas e tipo de escola).
+- **Correlação de Pearson:** Para avaliar a força da relação linear entre a intensidade dos sintomas e variáveis quantitativas.
 :::
-
-## **MÉTRICAS ADOTADAS**
-
-
-| Instrumento | Ponto de Corte | Classificação |
-|-------------|:--------------:|:-------------:|
-| PSQI | > 5 | Má qualidade de sono |
-| ESE  | > 10 | Sonolência diurna |
-
 
 ## **TESTES DE ASSOCIAÇÃO**
 
-Para avaliar a associação entre as variáveis categóricas do estudo, foram aplicados:
+Para a análise inferencial, a decisão baseou-se no nível de significância:
 
-- **Teste Qui-quadrado de Pearson**.
-- **Teste Exato de Fisher** (utilizado quando as frequências esperadas eram baixas).
+$$\alpha = 0,05 \text{ (ou 5%)} $$ [1]
 
-A decisão estatística baseou-se no nível de significância:
-$$\alpha = 0,05 \text{ (ou 5%)} $$
+As premissas de normalidade para a aplicação do **Teste T** foram assumidas para a comparação de médias das pontuações totais do Inventário de Beck (BDI).
 
-## **TABELAS** {.scrollable}
+# **CAPÍTULO 3: RESULTADOS (TESTE T E ASSOCIAÇÕES)**
 
-::: {style="text-align: center"}
-![](Tabela 1.png){width=50%}
-:::
+## **DIFERENÇAS POR GÊNERO (TESTE T)**
 
-## **TABELAS** {.scrollable}
-
-![](Tabela 2.png){width=100%}
-
-![](Tabela 3.png){width=100%}
-
-# **CAPÍTULO 3: RESULTADOS**
-
-## **QUALIDADE DO SONO VS. VARIÁVEIS**
-
-| Variável | Valor de $p$ | Associação |
-|----------|:----------:|:----------:|
-| Horas de sono | $0,043$ | **Significativa**  |
-| Presença de dor | $0,347$ | Não Significativa  |
-| Sonolência diurna | $0,979$ | Não Significativa  |
+O estudo aplicou o **Teste t de Student** para comparar os escores médios de sintomas depressivos entre os sexos:
 
 ::: box-blue
-**Interpretação:** A quantidade de horas dormidas por noite está associada à percepção da qualidade do sono do adolescente.
+- **Meninas:** Média de sintomas significativamente superior.
+- **Resultado:** $t = -7,759$ [2]
+- **Significância:** $p < 0,001$ [3]
 :::
 
-## **DISTÚRBIO DO SONO VS. LOCAL DA DOR**
+**Interpretação:** Há evidências estatísticas para rejeitar a hipótese nula, confirmando que o gênero influencia a intensidade dos sintomas na amostra estudada.
 
-Abaixo, os locais onde o **Teste Qui-quadrado** revelou dependência significativa entre as variáveis:
+## **USO DE SUBSTÂNCIAS (TESTE T)**
+
+A comparação de médias revelou que adolescentes que já utilizaram substâncias apresentam escores de depressão mais elevados:
+
+| Grupo | Valor de $t$ | Valor de $p$ | Decisão |
+|-------|:------------:|:------------:|:-------:|
+| Uso de Substâncias vs. Não Uso | $2,248$ [4] | $0,025$ [5] | **Significativo** |
+
+### **Detalhes por Substância (Médias BDI)**
+- **Tabaco:** Usuários (10,38) vs. Não-usuários (8,27) -> $p = 0,010$ [6].
+- **Álcool:** Usuários (9,16) vs. Não-usuários (7,50) -> $p = 0,024$ [7].
+
+## **SINTOMAS VS. ESCOLA (QUI-QUADRADO)**
+
+Ao associar a presença de sintomas (categórica) com o tipo de escola (Pública vs. Privada):
 
 ::: box-orange
-- **Parte superior das costas:** $p = 0,038$.
-- **Punhos e mãos:** $p = 0,004$.
+- **Teste Qui-Quadrado de Pearson:** Revelou que não houve diferença significativa na prevalência de sintomas depressivos entre alunos de escolas públicas e privadas.
+- **Resultado:** $p = 0,729$ [8]
 :::
 
-<br>
-
-> A prevalência de dor (geral) na amostra foi de [**87,5%**]{style="color:#e76f51; font-size:1.2em; font-weight:bold;"}
+> **Nota:** A prevalência geral de sintomas na amostra foi de **28%**.
 
 # **CAPÍTULO 4: CONCLUSÃO**
 
 ## **SÍNTESE DOS ACHADOS**
 
 ::: box-purple
-- [x] Associação confirmada entre distúrbios de sono e DME.
-- [x] Relação direta entre horas dormidas e qualidade do sono.
-- [x] Alta prevalência de má qualidade de sono (66,8%).
+- [x] O **Teste T** confirmou que o uso de álcool, tabaco e cocaína está associado a médias mais altas de sintomas depressivos.
+- [x] O gênero feminino apresenta vulnerabilidade estatística superior nesta amostra.
+- [x] A estatística permitiu identificar que, embora a escola não seja um fator diferencial, o comportamento de consumo de substâncias é um marcador de risco psíquico.
 :::
 
 ## **CONTRIBUIÇÃO PARA A SOCIEDADE**
 
-- **Importância da Estatística:** Os testes de associação permitiram identificar que o sono não é apenas um fator biológico, mas um componente de risco para dores físicas em jovens.
-- **Impacto Social:** Os dados sugerem a necessidade de ações educativas sobre a **higiene do sono** e o uso moderado de tecnologias para melhorar a saúde física e qualidade de vida dos adolescentes.
+- **Importância dos Testes de Hipótese:** A aplicação do Teste T e Qui-Quadrado permitiu sair do campo do "eu acho" para o campo das evidências, isolando os fatores que realmente impactam a saúde mental do jovem.
+- **Impacto Social:** Os dados fundamentam a necessidade de intervenções focadas no gênero feminino e no controle do tabagismo e alcoolismo como formas indiretas de prevenir o agravamento de quadros depressivos na adolescência.

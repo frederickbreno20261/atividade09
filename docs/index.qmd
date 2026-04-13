@@ -134,8 +134,8 @@ Abaixo, os resultados onde a **ANOVA** identificou diferenças estatísticas ent
 
 | Variável | Valor de $F$ | Valor de $p$ | Diferença Sig. |
 |----------|:------------:|:------------:|:--------------:|
-| IMC      | $5,821$ [2]  | $0,004$ [3]  | G3 > G1        |
-| % Gordura| $13,42$ [4]  | $0,000$ [5]  | G3 > G1 e G2   |
+| IMC      | $5,821$   | $0,004$   | G3 > G1        |
+| % Gordura| $13,42$   | $0,000$   | G3 > G1 e G2   |
 
 ::: box-blue
 **Interpretação:** O teste de Tukey revelou que o grupo mais velho (G3) possui maior acúmulo de gordura e maior IMC em relação aos mais jovens, sugerindo um declínio na composição corporal com o avanço da idade.
@@ -146,9 +146,9 @@ Abaixo, os resultados onde a **ANOVA** identificou diferenças estatísticas ent
 A aptidão funcional também apresentou declínio significativo:
 
 ::: box-orange
-- **Flexibilidade:** A ANOVA indicou $p = 0,000$ [6]. O teste de Tukey confirmou que o G3 é significativamente menos flexível que o G1 e G2.
-- **Resistência (Flexão):** Redução clara no desempenho do G3 em relação ao G1 ($p = 0,001$ [7]).
-- **Abdominais:** O desempenho médio caiu de 31 (G1) para 20 (G3) repetições ($p = 0,000$ [8]).
+- **Flexibilidade:** A ANOVA indicou $p = 0,000$. O teste de Tukey confirmou que o G3 é significativamente menos flexível que o G1 e G2.
+- **Resistência (Flexão):** Redução clara no desempenho do G3 em relação ao G1 ($p = 0,001$).
+- **Abdominais:** O desempenho médio caiu de 31 (G1) para 20 (G3) repetições ($p = 0,000$).
 :::
 
 <br>

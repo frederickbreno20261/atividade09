@@ -3,7 +3,7 @@ title: "**PRÁTICA ESTATÍSTICA II**"
 subtitle: "**ATIVIDADE AVALIATIVA 4**"
 author: "Frederick (<fchame@id.uff.br>) <br> Breno (<brenoborges@id.uff.br>)"
 date: today
-date-format: "12/04/2026"
+date-format: "13/04/2026"
 institute: "Universidade Federal Fluminense"
 format:
   revealjs:
@@ -17,7 +17,7 @@ format:
     margin: 0.07
     auto-stretch: false
     title-slide-attributes:
-      data-background-image: "Capa.png"
+      data-background-image: "Capa 2.jpg"
       data-background-size: cover
 ---
 
@@ -114,7 +114,17 @@ Para comparar os três grupos de idade (G1, G2 e G3), utilizou-se:
 - **Post-hoc de Tukey:** Aplicado quando a ANOVA indicava significância, para identificar exatamente quais pares de grupos diferiam entre si.
 
 Nível de significância adotado:
-$$\alpha = 0,05 \text{ (ou 5%)} $$ [1]
+$$\alpha = 0,05 \text{ (ou 5%)} $$ 
+
+
+
+## **TABELA 1** {.scrollable}
+
+![](Tabela 1.png){width="100%" fig-align="center"}
+
+## **TABELA 2** {.scrollable}
+
+![](Tabela 2.png){width="100%" fig-align="center"}
 
 # **CAPÍTULO 3: RESULTADOS**
 

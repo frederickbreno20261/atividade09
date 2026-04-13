@@ -6,11 +6,10 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.21">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
 
   <meta name="author" content="Frederick (fchame@id.uff.br)   Breno (brenoborges@id.uff.br)">
-  <meta name="dcterms.date" content="2026-12-04">
   <title>PRÁTICA ESTATÍSTICA II</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,6 +17,9 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +32,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link rel="stylesheet" href="custom.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -128,7 +130,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="Capa.png" data-background-size="cover" class="quarto-title-block center">
+<section id="title-slide" data-background-image="Capa 2.jpg" data-background-size="cover" class="quarto-title-block center">
   <h1 class="title"><strong>PRÁTICA ESTATÍSTICA II</strong></h1>
   <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 4</strong></p>
 
@@ -143,7 +145,7 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
     </div>
 </div>
 
-  <p class="date">12/04/2026</p>
+  <p class="date">13/04/2026</p>
 </section>
 <section>
 <section id="capítulo-1-introdução" class="title-slide slide level1 center">
@@ -242,7 +244,23 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <li><strong>ANOVA One-Way (Unidirecional):</strong> Para identificar se existiam diferenças entre as médias das variáveis.</li>
 <li><strong>Post-hoc de Tukey:</strong> Aplicado quando a ANOVA indicava significância, para identificar exatamente quais pares de grupos diferiam entre si.</li>
 </ul>
-<p>Nível de significância adotado: <span class="math display">\[\alpha = 0,05 \text{ (ou 5%)} \]</span> [1]</p>
+<p>Nível de significância adotado: <span class="math display">\[\alpha = 0,05 \text{ (ou 5%)} \]</span></p>
+</section>
+<section id="tabela-1" class="slide level2 scrollable">
+<h2><strong>TABELA 1</strong></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Tabela%201.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="tabela-2" class="slide level2 scrollable">
+<h2><strong>TABELA 2</strong></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Tabela%202.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
 </section></section>
 <section>
 <section id="capítulo-3-resultados" class="title-slide slide level1 center">
@@ -581,13 +599,14 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.9.36">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.21">
 
   <meta name="author" content="Frederick (fchame@id.uff.br)   Breno (brenoborges@id.uff.br)">
   <title>PRÁTICA ESTATÍSTICA II</title>
@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -132,7 +129,7 @@
 
 <section id="title-slide" data-background-image="Capa 2.jpg" data-background-size="cover" class="quarto-title-block center">
   <h1 class="title"><strong>PRÁTICA ESTATÍSTICA II</strong></h1>
-  <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 4</strong></p>
+  <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 9</strong></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -145,195 +142,765 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
     </div>
 </div>
 
-  <p class="date">13/04/2026</p>
+  <p class="date">31/05/2026</p>
 </section>
 <section>
 <section id="capítulo-1-introdução" class="title-slide slide level1 center">
 <h1><strong>CAPÍTULO 1: INTRODUÇÃO</strong></h1>
 
 </section>
-<section id="identificação-do-estudo" class="slide level2">
-<h2><strong>IDENTIFICAÇÃO DO ESTUDO</strong></h2>
+<section id="identificação-da-atividade" class="slide level2">
+<h2><strong>IDENTIFICAÇÃO DA ATIVIDADE</strong></h2>
 <div class="section-label">
-<p>Sobre o artigo</p>
+<p>Pacote geobr</p>
 </div>
 <div class="box-purple">
-<p><strong>TÍTULO</strong></p>
-<p>Parâmetros morfológicos e funcionais de indivíduos iniciantes de exercícios físicos em uma academia de Porto Velho-RO.</p>
+<p><strong>TEMA</strong></p>
+<p>Explorando a nova versão do pacote <code>geobr</code> por meio de duas funções sorteadas:</p>
+<ul>
+<li><code>read_conservation_units()</code></li>
+<li><code>read_disaster_risk_area()</code></li>
+</ul>
 </div>
-<p><strong>Autores:</strong> José Nunes da Silva Filho, Alex França Oliveira, José Roberto de Maio Godoi Filho, Luiz Gonzaga de Oliveira Gonçalves e Edson dos Santos Farias.</p>
+<p><strong>Observação:</strong> no enunciado da atividade, a primeira função aparece como <code>read_conservational_units()</code>, mas o nome correto no pacote é <code>read_conservation_units()</code>.</p>
 </section>
-<section id="motivação-da-pesquisa" class="slide level2">
-<h2><strong>MOTIVAÇÃO DA PESQUISA</strong></h2>
+<section id="o-que-é-o-geobr" class="slide level2">
+<h2><strong>O QUE É O geobr?</strong></h2>
 <div class="box-blue">
 <ul>
-<li>O sedentarismo e o envelhecimento populacional têm reduzido a aptidão física relacionada à saúde.</li>
-<li>Níveis baixos de aptidão física são preditores de doenças crônicas não transmissíveis.</li>
-<li>Entender o perfil inicial de alunos em academias permite que profissionais de saúde (educadores físicos e fisioterapeutas) prescrevam exercícios de forma segura e individualizada.</li>
+<li>O <code>geobr</code> permite baixar bases espaciais oficiais do Brasil diretamente no R.</li>
+<li>As bases são retornadas, por padrão, como objetos <code>sf</code>.</li>
+<li>O pacote organiza geometrias territoriais brasileiras em diferentes escalas.</li>
+<li>A proposta da atividade é visualizar, localizar e interpretar geometrias espaciais.</li>
 </ul>
 </div>
 </section>
-<section id="objetivos" class="slide level2">
-<h2><strong>OBJETIVOS</strong></h2>
+<section id="objetivo-da-apresentação" class="slide level2">
+<h2><strong>OBJETIVO DA APRESENTAÇÃO</strong></h2>
 <div class="section-label">
-<p>Meta do estudo</p>
+<p>Meta da dupla</p>
 </div>
 <div class="box-green">
-<p><strong>OBJETIVO GERAL</strong></p>
-<p>Verificar e comparar as variáveis morfológicas (composição corporal) e funcionais (flexibilidade e força) de indivíduos iniciantes em uma academia, estratificados por faixa etária.</p>
+<p>Apresentar duas funções do <code>geobr</code>, investigando:</p>
+<ul>
+<li>o que cada base representa;</li>
+<li>quais são seus principais argumentos;</li>
+<li>quais anos ou datas estão disponíveis;</li>
+<li>que tipo de geometria é retornado;</li>
+<li>quais informações aparecem nas colunas;</li>
+<li>como as geometrias podem ser visualizadas em mapas simples.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="capítulo-2-função-1" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 2: FUNÇÃO 1</strong></h1>
+
+</section>
+<section id="read_conservation_units" class="slide level2">
+<h2><strong>read_conservation_units()</strong></h2>
+<div class="section-label">
+<p>Unidades de conservação</p>
+</div>
+<div class="box-purple">
+<p><strong>O QUE A BASE REPRESENTA</strong></p>
+<p>A função <code>read_conservation_units()</code> baixa os polígonos das unidades de conservação existentes no território brasileiro.</p>
+<p>Essas unidades correspondem a áreas protegidas, criadas para conservação ambiental, preservação de ecossistemas, proteção da biodiversidade e ordenamento do uso do território.</p>
 </div>
 </section>
-<section id="a-amostra" class="slide level2">
-<h2><strong>A AMOSTRA</strong></h2>
+<section id="características-da-base" class="slide level2">
+<h2><strong>CARACTERÍSTICAS DA BASE</strong></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 id="composição">Composição</h3>
+<h3 id="finalidade-da-geometria">Finalidade da geometria</h3>
 <ul>
-<li><strong>120 alunos iniciantes</strong> em Porto Velho-RO.</li>
-<li>Divididos em 3 grupos:
-<ul>
-<li><strong>G1:</strong> 20-29 anos (<span class="math inline">\(n=40\)</span>).</li>
-<li><strong>G2:</strong> 30-39 anos (<span class="math inline">\(n=40\)</span>).</li>
-<li><strong>G3:</strong> 40-50 anos (<span class="math inline">\(n=40\)</span>).</li>
-</ul></li>
+<li>Delimitar oficialmente áreas protegidas.</li>
+<li>Localizar unidades de conservação no território nacional.</li>
+<li>Permitir sobreposição com estados, biomas e municípios.</li>
+<li>Apoiar diagnósticos ambientais e territoriais.</li>
 </ul>
 </div><div class="column" style="width:10%;">
 
 </div><div class="column" style="width:40%;">
-<h3 id="procedimento">Procedimento</h3>
+<h3 id="informação-institucional">Informação institucional</h3>
 <ul>
-<li>Estudo transversal descritivo.</li>
-<li>Coleta entre Março e Abril de 2014.</li>
-<li>Critério: Alunos com menos de 1 mês de prática.</li>
+<li><strong>Órgão-fonte:</strong> Ministério do Meio Ambiente.</li>
+<li><strong>Nível territorial:</strong> Brasil.</li>
+<li><strong>Geometria principal:</strong> polígonos.</li>
+<li><strong>Datas disponíveis:</strong> 202402 e 202503.</li>
 </ul>
 </div></div>
-</section></section>
-<section>
-<section id="capítulo-2-metodologia-estatística" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 2: METODOLOGIA ESTATÍSTICA</strong></h1>
-
 </section>
-<section id="variáveis-analisadas" class="slide level2">
-<h2><strong>VARIÁVEIS ANALISADAS</strong></h2>
-<div class="section-label">
-<p>O que foi medido</p>
-</div>
-<div class="box-orange">
+<section id="possíveis-aplicações" class="slide level2">
+<h2><strong>POSSÍVEIS APLICAÇÕES</strong></h2>
+<div class="box-blue">
 <ul>
-<li><strong>Morfológicas:</strong> Massa corporal, Estatura, IMC, % de Gordura e Massa Magra (via protocolos de dobras cutâneas).</li>
-<li><strong>Funcionais:</strong> - Flexibilidade (Teste de Sentar e Alcançar de Wells).
-<ul>
-<li>Resistência Muscular (Flexão de Braços e Abdominais).</li>
-</ul></li>
+<li>Visualizar a distribuição espacial de áreas protegidas.</li>
+<li>Verificar em quais biomas há maior concentração de unidades de conservação.</li>
+<li>Sobrepor unidades de conservação com estados ou municípios.</li>
+<li>Apoiar estudos de planejamento ambiental.</li>
+<li>Produzir mapas exploratórios sem escala quantitativa.</li>
 </ul>
 </div>
 </section>
-<section id="métricas-e-premissas" class="slide level2">
-<h2><strong>MÉTRICAS E PREMISSAS</strong></h2>
-<p>Antes da análise principal, o estudo verificou as premissas ensinadas em sala:</p>
-<ul>
-<li><strong>Teste de Shapiro-Wilk:</strong> Para verificar a normalidade da distribuição dos dados.</li>
-<li><strong>Teste de Levene:</strong> Para avaliar a homogeneidade das variâncias (homocedasticidade).</li>
-</ul>
-<p>Se estas premissas fossem atendidas, procedia-se para o teste de comparação de médias.</p>
-</section>
-<section id="testes-de-comparação-anova" class="slide level2">
-<h2><strong>TESTES DE COMPARAÇÃO (ANOVA)</strong></h2>
-<p>Para comparar os três grupos de idade (G1, G2 e G3), utilizou-se:</p>
-<ul>
-<li><strong>ANOVA One-Way (Unidirecional):</strong> Para identificar se existiam diferenças entre as médias das variáveis.</li>
-<li><strong>Post-hoc de Tukey:</strong> Aplicado quando a ANOVA indicava significância, para identificar exatamente quais pares de grupos diferiam entre si.</li>
-</ul>
-<p>Nível de significância adotado: <span class="math display">\[\alpha = 0,05 \text{ (ou 5%)} \]</span></p>
-</section>
-<section id="tabela-1" class="slide level2 scrollable">
-<h2><strong>TABELA 1</strong></h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Tabela%201.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</section>
-<section id="tabela-2" class="slide level2 scrollable">
-<h2><strong>TABELA 2</strong></h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Tabela%202.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</section></section>
-<section>
-<section id="capítulo-3-resultados" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 3: RESULTADOS</strong></h1>
-
-</section>
-<section id="resultados-morfológicos-anova" class="slide level2">
-<h2><strong>RESULTADOS MORFOLÓGICOS (ANOVA)</strong></h2>
-<p>Abaixo, os resultados onde a <strong>ANOVA</strong> identificou diferenças estatísticas entre as idades:</p>
+<section id="principais-argumentos" class="slide level2">
+<h2><strong>PRINCIPAIS ARGUMENTOS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
 <table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Variável</th>
-<th style="text-align: center;">Valor de <span class="math inline">\(F\)</span></th>
-<th style="text-align: center;">Valor de <span class="math inline">\(p\)</span></th>
-<th style="text-align: center;">Diferença Sig.</th>
+<th style="text-align: left;">argumento</th>
+<th style="text-align: left;">interpretação</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>IMC</td>
-<td style="text-align: center;"><span class="math inline">\(5,821\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(0,004\)</span></td>
-<td style="text-align: center;">G3 &gt; G1</td>
+<td style="text-align: left;"><code>date</code></td>
+<td style="text-align: left;">Data da base no formato AAAAMM. Exemplo usado: 202503.</td>
 </tr>
 <tr class="even">
-<td>% Gordura</td>
-<td style="text-align: center;"><span class="math inline">\(13,42\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(0,000\)</span></td>
-<td style="text-align: center;">G3 &gt; G1 e G2</td>
+<td style="text-align: left;"><code>simplified</code></td>
+<td style="text-align: left;">Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>output</code></td>
+<td style="text-align: left;">Tipo de saída. Por padrão, retorna objeto sf.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>showProgress</code></td>
+<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>cache</code></td>
+<td style="text-align: left;">Permite reaproveitar arquivos baixados na sessão.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>verbose</code></td>
+<td style="text-align: left;">Controla mensagens informativas durante a execução.</td>
 </tr>
 </tbody>
 </table>
-<div class="box-blue">
-<p><strong>Interpretação:</strong> O teste de Tukey revelou que o grupo mais velho (G3) possui maior acúmulo de gordura e maior IMC em relação aos mais jovens, sugerindo um declínio na composição corporal com o avanço da idade.</p>
+</div>
 </div>
 </section>
-<section id="resultados-funcionais-anovatukey" class="slide level2">
-<h2><strong>RESULTADOS FUNCIONAIS (ANOVA/TUKEY)</strong></h2>
-<p>A aptidão funcional também apresentou declínio significativo:</p>
-<div class="box-orange">
-<ul>
-<li><strong>Flexibilidade:</strong> A ANOVA indicou <span class="math inline">\(p = 0,000\)</span>. O teste de Tukey confirmou que o G3 é significativamente menos flexível que o G1 e G2.</li>
-<li><strong>Resistência (Flexão):</strong> Redução clara no desempenho do G3 em relação ao G1 (<span class="math inline">\(p = 0,001\)</span>).</li>
-<li><strong>Abdominais:</strong> O desempenho médio caiu de 31 (G1) para 20 (G3) repetições (<span class="math inline">\(p = 0,000\)</span>).</li>
-</ul>
+<section id="estrutura-do-objeto-espacial" class="slide level2">
+<h2><strong>ESTRUTURA DO OBJETO ESPACIAL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 27%">
+<col style="width: 6%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">base</th>
+<th style="text-align: left;">classe</th>
+<th style="text-align: left;">linhas</th>
+<th style="text-align: right;">colunas_sem_geometria</th>
+<th style="text-align: left;">tipo_de_geometria</th>
+<th style="text-align: right;">epsg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Unidades de conservação</td>
+<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
+<td style="text-align: left;">3.001</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">POLYGON, MULTIPOLYGON</td>
+<td style="text-align: right;">4674</td>
+</tr>
+</tbody>
+</table>
 </div>
-<p><br></p>
-<blockquote>
-<p>A <strong>ANOVA</strong> confirmou que a capacidade funcional diminui de forma linear conforme a faixa etária aumenta.</p>
-</blockquote>
+</div>
+</section>
+<section id="colunas-da-base" class="slide level2 scrollable">
+<h2><strong>COLUNAS DA BASE</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">coluna</th>
+<th style="text-align: left;">tipo</th>
+<th style="text-align: left;">exemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">uc_id</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">2; 4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd_cnuc</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">0000.00.0002; 0000.00.0004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wdpa_pid</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">31755; 19752</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nome_uc</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">ÁREA DE PROTEÇÃO AMBIENTAL CAVERNAS DO PERUAÇU; ÁREA DE PROTEÇÃO AM…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cria_ano</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">28-09-1989; 07-11-1983</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cria_ato</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Decreto 98182 de 26-09-1989; Decreto 88940 de 07-11-1983</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">outro_ato</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Sem informação; Decreto 91892 de 06-11-1995 Ampliação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pl_manejo</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Sem informação; Sim</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">co_gestor</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Sim; Sem informação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quali_pol</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Polígono corresponde ao memorial descritivo; Polígono é uma estimat…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ppgr</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Mosaico Sertão Veredas - Peruaçu; Projeto GEF Mar - Áreas Marinhas …</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ha_total</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">143353.29; 82679.26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ha_ato</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">143866; 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">esfera</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Federal; Estadual</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">uf</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">MINAS GERAIS; DISTRITO FEDERAL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">municipio</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">BONITO DE MINAS (MG), CÔNEGO MARINHO (MG), ITACARAMBI (MG), JANUÁRI…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">org_gestor</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">INSTITUTO CHICO MENDES DE CONSERVAÇÃO DA BIODIVERSIDADE; SECRETARIA…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grupo</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Uso Sustentável; Proteção Integral</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">categoria</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Área de Proteção Ambiental; Monumento Natural</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cat_iucn</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Category V; Category III</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">amazonia</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">575338.56; 271465.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">caatinga</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">26660.87; 33419.89</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cerrado</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">116692.42; 82679.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">matlantica</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">34957.2; 437517.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pampa</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">316669.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pantanal</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">marinho</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">119934.73; 798.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">situacao</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Ativo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">limite</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">uc</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rbiosfera</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Caatinga,Mata Atlântica; Cerrado</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nome_abrev</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">APA CAVERNAS DO PERUAÇU; APA DA BACIA DO RIO SÃO BARTOLOMEU</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">202503</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section></section>
 <section>
-<section id="capítulo-4-conclusão" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 4: CONCLUSÃO</strong></h1>
+<section id="capítulo-3-mapas-unidades-de-conservação" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 3: MAPAS — UNIDADES DE CONSERVAÇÃO</strong></h1>
+
+</section>
+<section id="mapa-1-unidades-de-conservação-no-brasil" class="slide level2">
+<h2><strong>MAPA 1: UNIDADES DE CONSERVAÇÃO NO BRASIL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-uc-brasil-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mapa-2-sobreposição-com-biomas" class="slide level2">
+<h2><strong>MAPA 2: SOBREPOSIÇÃO COM BIOMAS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-uc-biomas-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="capítulo-4-função-2" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 4: FUNÇÃO 2</strong></h1>
+
+</section>
+<section id="read_disaster_risk_area" class="slide level2">
+<h2><strong>read_disaster_risk_area()</strong></h2>
+<div class="section-label">
+<p>Áreas de risco de desastre</p>
+</div>
+<div class="box-purple">
+<p><strong>O QUE A BASE REPRESENTA</strong></p>
+<p>A função <code>read_disaster_risk_area()</code> baixa áreas de risco de desastre no Brasil.</p>
+<p>A base se concentra em riscos geodinâmicos e hidrometeorológicos, especialmente áreas sujeitas a deslizamentos e inundações.</p>
+</div>
+</section>
+<section id="características-da-base-1" class="slide level2">
+<h2><strong>CARACTERÍSTICAS DA BASE</strong></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="finalidade-da-geometria-1">Finalidade da geometria</h3>
+<ul>
+<li>Delimitar polígonos de áreas expostas a risco.</li>
+<li>Identificar áreas vulneráveis a desastres.</li>
+<li>Apoiar defesa civil, planejamento urbano e prevenção.</li>
+<li>Permitir análise espacial por município ou estado.</li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div><div class="column" style="width:40%;">
+<h3 id="informação-institucional-1">Informação institucional</h3>
+<ul>
+<li><strong>Órgãos-fonte:</strong> IBGE e CEMADEN.</li>
+<li><strong>Nível territorial:</strong> Brasil, estados ou municípios.</li>
+<li><strong>Geometria principal:</strong> polígonos de risco.</li>
+<li><strong>Ano disponível:</strong> 2010.</li>
+</ul>
+</div></div>
+</section>
+<section id="possíveis-aplicações-1" class="slide level2">
+<h2><strong>POSSÍVEIS APLICAÇÕES</strong></h2>
+<div class="box-orange">
+<ul>
+<li>Localizar áreas expostas a deslizamentos e inundações.</li>
+<li>Sobrepor áreas de risco com limites municipais.</li>
+<li>Apoiar planos municipais de redução de risco.</li>
+<li>Identificar áreas prioritárias para monitoramento.</li>
+<li>Produzir mapas simples de localização e interpretação espacial.</li>
+</ul>
+</div>
+</section>
+<section id="principais-argumentos-1" class="slide level2">
+<h2><strong>PRINCIPAIS ARGUMENTOS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">argumento</th>
+<th style="text-align: left;">interpretação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>year</code></td>
+<td style="text-align: left;">Ano da base. Atualmente, a base está disponível para 2010.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>code_muni</code></td>
+<td style="text-align: left;">Código de município, sigla de estado ou ‘all’. Exemplo usado: ‘MG’ e 3106200.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>simplified</code></td>
+<td style="text-align: left;">Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>output</code></td>
+<td style="text-align: left;">Tipo de saída. Por padrão, retorna objeto sf.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>showProgress</code></td>
+<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>cache</code></td>
+<td style="text-align: left;">Permite reaproveitar arquivos baixados na sessão.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>verbose</code></td>
+<td style="text-align: left;">Controla mensagens informativas durante a execução.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="estrutura-do-objeto-espacial-1" class="slide level2">
+<h2><strong>ESTRUTURA DO OBJETO ESPACIAL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 23%">
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">base</th>
+<th style="text-align: left;">classe</th>
+<th style="text-align: left;">linhas</th>
+<th style="text-align: right;">colunas_sem_geometria</th>
+<th style="text-align: left;">tipo_de_geometria</th>
+<th style="text-align: right;">epsg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Áreas de risco de desastre — MG</td>
+<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
+<td style="text-align: left;">1.632</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">POLYGON, MULTIPOLYGON</td>
+<td style="text-align: right;">4674</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Áreas de risco de desastre — Belo Horizonte</td>
+<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
+<td style="text-align: left;">216</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">POLYGON</td>
+<td style="text-align: right;">4674</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="colunas-da-base-1" class="slide level2 scrollable">
+<h2><strong>COLUNAS DA BASE</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">coluna</th>
+<th style="text-align: left;">tipo</th>
+<th style="text-align: left;">exemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">code_muni</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">3100609; 3101102</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name_muni</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Agua Boa; Aimores</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geo_bater</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">31006090004; 31006090003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">origem</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">face; setor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acuracia</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">otima; boa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">obs</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Sem associacao de dados do Censo Demografico 2010; Aglomerado Subno…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">code_state</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name_state</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Minas Gerais</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abbrev_state</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">MG</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">code_region</td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">name_region</td>
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">Sudeste</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="capítulo-5-mapas-áreas-de-risco" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 5: MAPAS — ÁREAS DE RISCO</strong></h1>
+
+</section>
+<section id="mapa-3-áreas-de-risco-em-minas-gerais" class="slide level2">
+<h2><strong>MAPA 3: ÁREAS DE RISCO EM MINAS GERAIS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-risco-mg-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mapa-4-recorte-municipal-belo-horizonte" class="slide level2">
+<h2><strong>MAPA 4: RECORTE MUNICIPAL — BELO HORIZONTE</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-risco-bh-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="capítulo-6-comparação-e-interpretação" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 6: COMPARAÇÃO E INTERPRETAÇÃO</strong></h1>
+
+</section>
+<section id="comparação-entre-as-funções" class="slide level2">
+<h2><strong>COMPARAÇÃO ENTRE AS FUNÇÕES</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 45%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">critério</th>
+<th style="text-align: left;"><code>read_conservation_units()</code></th>
+<th style="text-align: left;"><code>read_disaster_risk_area()</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Base representada</td>
+<td style="text-align: left;">Unidades de conservação</td>
+<td style="text-align: left;">Áreas de risco de desastre</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Órgão responsável</td>
+<td style="text-align: left;">MMA</td>
+<td style="text-align: left;">IBGE e CEMADEN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Escala territorial</td>
+<td style="text-align: left;">Brasil</td>
+<td style="text-align: left;">Brasil, estados ou municípios</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Filtro espacial direto</td>
+<td style="text-align: left;">Não possui argumento por estado ou município</td>
+<td style="text-align: left;">Possui argumento <code>code_muni</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Período disponível</td>
+<td style="text-align: left;">202402 e 202503</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geometria</td>
+<td style="text-align: left;">Polígonos</td>
+<td style="text-align: left;">Polígonos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uso principal</td>
+<td style="text-align: left;">Conservação e planejamento ambiental</td>
+<td style="text-align: left;">Prevenção e gestão de riscos</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="interpretação-espacial" class="slide level2">
+<h2><strong>INTERPRETAÇÃO ESPACIAL</strong></h2>
+<div class="box-blue">
+<p>A visualização das unidades de conservação mostra como áreas protegidas se distribuem pelo território nacional e como podem ser interpretadas em relação aos biomas brasileiros.</p>
+<p>Já a base de áreas de risco permite localizar polígonos associados à vulnerabilidade a deslizamentos e inundações, principalmente quando sobreposta aos limites municipais.</p>
+</div>
+</section>
+<section id="por-que-não-usamos-mapas-coropléticos" class="slide level2">
+<h2><strong>POR QUE NÃO USAMOS MAPAS COROPLÉTICOS?</strong></h2>
+<div class="box-orange">
+<p>A orientação da atividade é visualizar geometrias, não representar intensidade numérica.</p>
+<p>Por isso, os mapas foram construídos com:</p>
+<ul>
+<li>preenchimentos constantes;</li>
+<li>contornos simples;</li>
+<li>sobreposição de camadas;</li>
+<li>ausência de escala quantitativa;</li>
+<li>foco em localização e interpretação territorial.</li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="capítulo-7-conclusão" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 7: CONCLUSÃO</strong></h1>
 
 </section>
 <section id="síntese-dos-achados" class="slide level2">
 <h2><strong>SÍNTESE DOS ACHADOS</strong></h2>
 <div class="box-purple">
 <ul class="task-list">
-<li><label><input type="checkbox" checked=""><strong>Declínio Morfológico:</strong> Aumento do % de gordura e IMC com a idade.</label></li>
-<li><label><input type="checkbox" checked=""><strong>Perda Funcional:</strong> Redução drástica na flexibilidade e força muscular no grupo de 40-50 anos.</label></li>
-<li><label><input type="checkbox" checked=""><strong>Validação Estatística:</strong> O uso da ANOVA e Tukey permitiu confirmar que o envelhecimento, mesmo em iniciantes, já impõe barreiras físicas claras.</label></li>
+<li><label><input type="checkbox" checked="">A função <code>read_conservation_units()</code> retorna polígonos de unidades de conservação brasileiras.</label></li>
+<li><label><input type="checkbox" checked="">A função <code>read_disaster_risk_area()</code> retorna polígonos de áreas de risco associadas a deslizamentos e inundações.</label></li>
+<li><label><input type="checkbox" checked="">Ambas retornam objetos espaciais compatíveis com <code>sf</code>.</label></li>
+<li><label><input type="checkbox" checked="">As duas bases permitem mapas simples, organizados e interpretáveis.</label></li>
+<li><label><input type="checkbox" checked="">A sobreposição de camadas melhora a leitura territorial sem exigir mapas coropléticos.</label></li>
 </ul>
 </div>
 </section>
-<section id="contribuição-para-a-sociedade" class="slide level2">
-<h2><strong>CONTRIBUIÇÃO PARA A SOCIEDADE</strong></h2>
-<ul>
-<li><strong>Importância dos Testes:</strong> A ANOVA permitiu estratificar o risco por idade, provando que um iniciante de 45 anos não pode receber a mesma carga de treino que um de 20.</li>
-<li><strong>Impacto Social:</strong> O estudo destaca a importância da avaliação física prévia em academias. Ao identificar as deficiências funcionais (como a baixa flexibilidade em G3), evita-se lesões e promove-se uma longevidade ativa e saudável para a população de Porto Velho.</li>
-</ul>
+<section id="contribuição-da-atividade" class="slide level2">
+<h2><strong>CONTRIBUIÇÃO DA ATIVIDADE</strong></h2>
+<div class="box-green">
+<p>O exercício mostra como o <code>geobr</code> facilita o acesso a bases geográficas oficiais brasileiras.</p>
+<p>Com poucas linhas de código em R, é possível baixar geometrias, examinar sua estrutura, identificar suas colunas e produzir mapas de apoio para interpretação espacial.</p>
+</div>
 
 </section></section>
     </div>
@@ -551,6 +1118,82 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
@@ -599,14 +1242,13 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-          const outerScaffold = trigger.parentElement.cloneNode(true);
-          const codeEl = outerScaffold.querySelector('code');
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
             }
-          }
-          return codeEl.innerText;
+            return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

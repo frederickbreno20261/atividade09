@@ -1,9 +1,9 @@
 ---
 title: "**PRÁTICA ESTATÍSTICA II**"
-subtitle: "**ATIVIDADE AVALIATIVA 4**"
+subtitle: "**ATIVIDADE AVALIATIVA 9**"
 author: "Frederick (<fchame@id.uff.br>) <br> Breno (<brenoborges@id.uff.br>)"
 date: today
-date-format: "13/04/2026"
+date-format: "31/05/2026"
 institute: "Universidade Federal Fluminense"
 format:
   revealjs:
@@ -21,151 +21,581 @@ format:
       data-background-size: cover
 ---
 
+```{r}
+#| label: setup
+#| include: false
+
+pacotes <- c("geobr", "sf", "dplyr", "ggplot2", "knitr", "tibble")
+
+pacotes_ausentes <- pacotes[!vapply(pacotes, requireNamespace, quietly = TRUE, FUN.VALUE = logical(1))]
+
+if (length(pacotes_ausentes) > 0) {
+  install.packages(pacotes_ausentes)
+}
+
+invisible(lapply(pacotes, library, character.only = TRUE))
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  out.width = "100%"
+)
+
+options(scipen = 999)
+
+encurtar_texto <- function(x, limite = 70) {
+  x <- as.character(x)
+  ifelse(nchar(x) > limite, paste0(substr(x, 1, limite - 3), "..."), x)
+}
+
+descrever_colunas <- function(objeto_sf, n_exemplos = 2) {
+  dados <- sf::st_drop_geometry(objeto_sf)
+  
+  tibble::tibble(
+    coluna = names(dados),
+    tipo = vapply(dados, function(x) paste(class(x), collapse = " / "), character(1)),
+    exemplos = vapply(
+      dados,
+      function(x) {
+        valores <- unique(stats::na.omit(as.character(head(x, 100))))
+        texto <- paste(head(valores, n_exemplos), collapse = "; ")
+        encurtar_texto(texto)
+      },
+      character(1)
+    )
+  )
+}
+
+resumir_objeto_sf <- function(objeto_sf, nome_objeto) {
+  tibble::tibble(
+    base = nome_objeto,
+    classe = paste(class(objeto_sf), collapse = " / "),
+    linhas = format(nrow(objeto_sf), big.mark = ".", decimal.mark = ","),
+    colunas_sem_geometria = ncol(sf::st_drop_geometry(objeto_sf)),
+    tipo_de_geometria = paste(unique(as.character(sf::st_geometry_type(objeto_sf))), collapse = ", "),
+    epsg = sf::st_crs(objeto_sf)$epsg
+  )
+}
+
+
+uc <- geobr::read_conservation_units(
+  date = 202503,
+  simplified = TRUE,
+  output = "sf",
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+risco_mg <- geobr::read_disaster_risk_area(
+  year = 2010,
+  code_muni = "MG",
+  simplified = TRUE,
+  output = "sf",
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+risco_bh <- geobr::read_disaster_risk_area(
+  year = 2010,
+  code_muni = 3106200,
+  simplified = TRUE,
+  output = "sf",
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+brasil <- geobr::read_country(
+  year = 2025,
+  simplified = TRUE,
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+estados <- geobr::read_state(
+  year = 2025,
+  simplified = TRUE,
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+municipios_mg <- geobr::read_municipality(
+  code_muni = "MG",
+  year = 2010,
+  simplified = TRUE,
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+bh <- geobr::read_municipality(
+  code_muni = 3106200,
+  year = 2010,
+  simplified = TRUE,
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+biomas <- geobr::read_biomes(
+  year = 2025,
+  simplified = TRUE,
+  showProgress = FALSE,
+  cache = TRUE,
+  verbose = FALSE
+)
+
+estrutura_geral <- dplyr::bind_rows(
+  resumir_objeto_sf(uc, "Unidades de conservação"),
+  resumir_objeto_sf(risco_mg, "Áreas de risco de desastre — MG"),
+  resumir_objeto_sf(risco_bh, "Áreas de risco de desastre — Belo Horizonte")
+)
+
+colunas_uc <- descrever_colunas(uc)
+
+colunas_risco <- descrever_colunas(risco_mg)
+```
+
 # **CAPÍTULO 1: INTRODUÇÃO**
 
-## **IDENTIFICAÇÃO DO ESTUDO**
+## **IDENTIFICAÇÃO DA ATIVIDADE**
 
 ::: section-label
-Sobre o artigo
+Pacote geobr
 :::
 
 ::: box-purple
-**TÍTULO**
+**TEMA**
 
-Parâmetros morfológicos e funcionais de indivíduos iniciantes de exercícios físicos em uma academia de Porto Velho-RO.
+Explorando a nova versão do pacote `geobr` por meio de duas funções sorteadas:
+
+- `read_conservation_units()`
+- `read_disaster_risk_area()`
 :::
 
-**Autores:**
-José Nunes da Silva Filho, Alex França Oliveira, José Roberto de Maio Godoi Filho, Luiz Gonzaga de Oliveira Gonçalves e Edson dos Santos Farias.
-
-## **MOTIVAÇÃO DA PESQUISA**
+## **O QUE É O geobr?**
 
 ::: box-blue
-- O sedentarismo e o envelhecimento populacional têm reduzido a aptidão física relacionada à saúde.
-- Níveis baixos de aptidão física são preditores de doenças crônicas não transmissíveis.
-- Entender o perfil inicial de alunos em academias permite que profissionais de saúde (educadores físicos e fisioterapeutas) prescrevam exercícios de forma segura e individualizada.
+- O `geobr` permite baixar bases espaciais oficiais do Brasil diretamente no R.
+- As bases são retornadas, por padrão, como objetos `sf`.
+- O pacote organiza geometrias territoriais brasileiras em diferentes escalas.
+- A proposta da atividade é visualizar, localizar e interpretar geometrias espaciais.
 :::
 
-## **OBJETIVOS**
+## **OBJETIVO DA APRESENTAÇÃO**
 
 ::: section-label
-Meta do estudo
+Meta da dupla
 :::
 
 ::: box-green
-**OBJETIVO GERAL**
+Apresentar duas funções do `geobr`, investigando:
 
-Verificar e comparar as variáveis morfológicas (composição corporal) e funcionais (flexibilidade e força) de indivíduos iniciantes em uma academia, estratificados por faixa etária.
+- o que cada base representa;
+- quais são seus principais argumentos;
+- quais anos ou datas estão disponíveis;
+- que tipo de geometria é retornado;
+- quais informações aparecem nas colunas;
+- como as geometrias podem ser visualizadas em mapas simples.
 :::
 
-## **A AMOSTRA**
+# **CAPÍTULO 2: FUNÇÃO 1**
+
+## **read_conservation_units()**
+
+::: section-label
+Unidades de conservação
+:::
+
+::: box-purple
+**O QUE A BASE REPRESENTA**
+
+A função `read_conservation_units()` baixa os polígonos das unidades de conservação existentes no território brasileiro.
+
+Essas unidades correspondem a áreas protegidas, criadas para conservação ambiental, preservação de ecossistemas, proteção da biodiversidade e ordenamento do uso do território.
+:::
+
+## **CARACTERÍSTICAS DA BASE**
 
 :::: columns
 
 ::: {.column width="50%"}
-### Composição
-- **120 alunos iniciantes** em Porto Velho-RO.
-- Divididos em 3 grupos:
-  - **G1:** 20-29 anos ($n=40$).
-  - **G2:** 30-39 anos ($n=40$).
-  - **G3:** 40-50 anos ($n=40$).
+### Finalidade da geometria
+
+- Delimitar oficialmente áreas protegidas.
+- Localizar unidades de conservação no território nacional.
+- Permitir sobreposição com estados, biomas e municípios.
+- Apoiar diagnósticos ambientais e territoriais.
 :::
 
 ::: {.column width="10%"}
 :::
 
 ::: {.column width="40%"}
-### Procedimento
-- Estudo transversal descritivo.
-- Coleta entre Março e Abril de 2014.
-- Critério: Alunos com menos de 1 mês de prática.
+### Informação institucional
+
+- **Órgão-fonte:** Ministério do Meio Ambiente.
+- **Nível territorial:** Brasil.
+- **Geometria principal:** polígonos.
+- **Datas disponíveis:** 202402 e 202503.
 :::
 
 ::::
 
-# **CAPÍTULO 2: METODOLOGIA ESTATÍSTICA**
-
-## **VARIÁVEIS ANALISADAS**
-
-::: section-label
-O que foi medido
-:::
-
-::: box-orange
-- **Morfológicas:** Massa corporal, Estatura, IMC, % de Gordura e Massa Magra (via protocolos de dobras cutâneas).
-- **Funcionais:** - Flexibilidade (Teste de Sentar e Alcançar de Wells).
-  - Resistência Muscular (Flexão de Braços e Abdominais).
-:::
-
-## **MÉTRICAS E PREMISSAS**
-
-Antes da análise principal, o estudo verificou as premissas ensinadas em sala:
-
-- **Teste de Shapiro-Wilk:** Para verificar a normalidade da distribuição dos dados.
-- **Teste de Levene:** Para avaliar a homogeneidade das variâncias (homocedasticidade).
-
-Se estas premissas fossem atendidas, procedia-se para o teste de comparação de médias.
-
-## **TESTES DE COMPARAÇÃO (ANOVA)**
-
-Para comparar os três grupos de idade (G1, G2 e G3), utilizou-se:
-
-- **ANOVA One-Way (Unidirecional):** Para identificar se existiam diferenças entre as médias das variáveis.
-- **Post-hoc de Tukey:** Aplicado quando a ANOVA indicava significância, para identificar exatamente quais pares de grupos diferiam entre si.
-
-Nível de significância adotado:
-$$\alpha = 0,05 \text{ (ou 5%)} $$ 
-
-
-
-## **TABELA 1** {.scrollable}
-
-![](Tabela 1.png){width="100%" fig-align="center"}
-
-## **TABELA 2** {.scrollable}
-
-![](Tabela 2.png){width="100%" fig-align="center"}
-
-# **CAPÍTULO 3: RESULTADOS**
-
-## **RESULTADOS MORFOLÓGICOS (ANOVA)**
-
-Abaixo, os resultados onde a **ANOVA** identificou diferenças estatísticas entre as idades:
-
-| Variável | Valor de $F$ | Valor de $p$ | Diferença Sig. |
-|----------|:------------:|:------------:|:--------------:|
-| IMC      | $5,821$   | $0,004$   | G3 > G1        |
-| % Gordura| $13,42$   | $0,000$   | G3 > G1 e G2   |
+## **POSSÍVEIS APLICAÇÕES**
 
 ::: box-blue
-**Interpretação:** O teste de Tukey revelou que o grupo mais velho (G3) possui maior acúmulo de gordura e maior IMC em relação aos mais jovens, sugerindo um declínio na composição corporal com o avanço da idade.
+- Visualizar a distribuição espacial de áreas protegidas.
+- Verificar em quais biomas há maior concentração de unidades de conservação.
+- Sobrepor unidades de conservação com estados ou municípios.
+- Apoiar estudos de planejamento ambiental.
+- Produzir mapas exploratórios sem escala quantitativa.
 :::
 
-## **RESULTADOS FUNCIONAIS (ANOVA/TUKEY)**
+## **PRINCIPAIS ARGUMENTOS**
 
-A aptidão funcional também apresentou declínio significativo:
+```{r}
+#| label: tabela-argumentos-uc
+
+argumentos_uc <- tibble::tribble(
+  ~argumento, ~interpretação,
+  "`date`", "Data da base no formato AAAAMM. Exemplo usado: 202503.",
+  "`simplified`", "Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.",
+  "`output`", "Tipo de saída. Por padrão, retorna objeto sf.",
+  "`showProgress`", "Controla a exibição da barra de progresso.",
+  "`cache`", "Permite reaproveitar arquivos baixados na sessão.",
+  "`verbose`", "Controla mensagens informativas durante a execução."
+)
+
+knitr::kable(argumentos_uc)
+```
+
+## **ESTRUTURA DO OBJETO ESPACIAL**
+
+```{r}
+#| label: tabela-estrutura-uc
+
+estrutura_geral |>
+  dplyr::filter(base == "Unidades de conservação") |>
+  knitr::kable()
+```
+
+## **COLUNAS DA BASE** {.scrollable}
+
+```{r}
+#| label: tabela-colunas-uc
+
+knitr::kable(colunas_uc)
+```
+
+# **CAPÍTULO 3: MAPAS — UNIDADES DE CONSERVAÇÃO**
+
+## **MAPA 1: UNIDADES DE CONSERVAÇÃO NO BRASIL**
+
+```{r}
+#| label: mapa-uc-brasil
+#| fig-width: 11
+#| fig-height: 5.8
+
+ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = brasil,
+    fill = "#f4f1ea",
+    color = "#4d4d4d",
+    linewidth = 0.25
+  ) +
+  ggplot2::geom_sf(
+    data = estados,
+    fill = NA,
+    color = "#ffffff",
+    linewidth = 0.15
+  ) +
+  ggplot2::geom_sf(
+    data = uc,
+    fill = "#2e7d32",
+    color = "#145214",
+    alpha = 0.45,
+    linewidth = 0.08
+  ) +
+  ggplot2::labs(
+    title = "Unidades de conservação no território brasileiro",
+    subtitle = "Mapa exploratório com polígonos de áreas protegidas",
+    caption = "Fonte: geobr; base de unidades de conservação do MMA."
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold", size = 18),
+    plot.subtitle = ggplot2::element_text(size = 12),
+    plot.caption = ggplot2::element_text(size = 9)
+  )
+```
+
+## **MAPA 2: SOBREPOSIÇÃO COM BIOMAS**
+
+```{r}
+#| label: mapa-uc-biomas
+#| fig-width: 11
+#| fig-height: 5.8
+
+ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = biomas,
+    fill = "#f6e8c3",
+    color = "#8c6d31",
+    linewidth = 0.35,
+    alpha = 0.45
+  ) +
+  ggplot2::geom_sf(
+    data = estados,
+    fill = NA,
+    color = "#ffffff",
+    linewidth = 0.15
+  ) +
+  ggplot2::geom_sf(
+    data = uc,
+    fill = "#1b9e77",
+    color = "#0b4f3a",
+    alpha = 0.45,
+    linewidth = 0.06
+  ) +
+  ggplot2::labs(
+    title = "Unidades de conservação sobrepostas aos biomas brasileiros",
+    subtitle = "A sobreposição ajuda a interpretar a localização ambiental das áreas protegidas",
+    caption = "Fonte: geobr; bases de unidades de conservação, biomas e estados."
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold", size = 18),
+    plot.subtitle = ggplot2::element_text(size = 12),
+    plot.caption = ggplot2::element_text(size = 9)
+  )
+```
+
+# **CAPÍTULO 4: FUNÇÃO 2**
+
+## **read_disaster_risk_area()**
+
+::: section-label
+Áreas de risco de desastre
+:::
+
+::: box-purple
+**O QUE A BASE REPRESENTA**
+
+A função `read_disaster_risk_area()` baixa áreas de risco de desastre no Brasil.
+
+A base se concentra em riscos geodinâmicos e hidrometeorológicos, especialmente áreas sujeitas a deslizamentos e inundações.
+:::
+
+## **CARACTERÍSTICAS DA BASE**
+
+:::: columns
+
+::: {.column width="50%"}
+### Finalidade da geometria
+
+- Delimitar polígonos de áreas expostas a risco.
+- Identificar áreas vulneráveis a desastres.
+- Apoiar defesa civil, planejamento urbano e prevenção.
+- Permitir análise espacial por município ou estado.
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+### Informação institucional
+
+- **Órgãos-fonte:** IBGE e CEMADEN.
+- **Nível territorial:** Brasil, estados ou municípios.
+- **Geometria principal:** polígonos de risco.
+- **Ano disponível:** 2010.
+:::
+
+::::
+
+## **POSSÍVEIS APLICAÇÕES**
 
 ::: box-orange
-- **Flexibilidade:** A ANOVA indicou $p = 0,000$. O teste de Tukey confirmou que o G3 é significativamente menos flexível que o G1 e G2.
-- **Resistência (Flexão):** Redução clara no desempenho do G3 em relação ao G1 ($p = 0,001$).
-- **Abdominais:** O desempenho médio caiu de 31 (G1) para 20 (G3) repetições ($p = 0,000$).
+- Localizar áreas expostas a deslizamentos e inundações.
+- Sobrepor áreas de risco com limites municipais.
+- Apoiar planos municipais de redução de risco.
+- Identificar áreas prioritárias para monitoramento.
+- Produzir mapas simples de localização e interpretação espacial.
 :::
 
-<br>
+## **PRINCIPAIS ARGUMENTOS**
 
-> A **ANOVA** confirmou que a capacidade funcional diminui de forma linear conforme a faixa etária aumenta.
+```{r}
+#| label: tabela-argumentos-risco
 
-# **CAPÍTULO 4: CONCLUSÃO**
+argumentos_risco <- tibble::tribble(
+  ~argumento, ~interpretação,
+  "`year`", "Ano da base. Atualmente, a base está disponível para 2010.",
+  "`code_muni`", "Código de município, sigla de estado ou 'all'. Exemplo usado: 'MG' e 3106200.",
+  "`simplified`", "Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.",
+  "`output`", "Tipo de saída. Por padrão, retorna objeto sf.",
+  "`showProgress`", "Controla a exibição da barra de progresso.",
+  "`cache`", "Permite reaproveitar arquivos baixados na sessão.",
+  "`verbose`", "Controla mensagens informativas durante a execução."
+)
+
+knitr::kable(argumentos_risco)
+```
+
+## **ESTRUTURA DO OBJETO ESPACIAL**
+
+```{r}
+#| label: tabela-estrutura-risco
+
+estrutura_geral |>
+  dplyr::filter(base != "Unidades de conservação") |>
+  knitr::kable()
+```
+
+## **COLUNAS DA BASE** {.scrollable}
+
+```{r}
+#| label: tabela-colunas-risco
+
+knitr::kable(colunas_risco)
+```
+
+# **CAPÍTULO 5: MAPAS — ÁREAS DE RISCO**
+
+## **MAPA 3: ÁREAS DE RISCO EM MINAS GERAIS**
+
+```{r}
+#| label: mapa-risco-mg
+#| fig-width: 11
+#| fig-height: 5.8
+
+ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = municipios_mg,
+    fill = "#f2f2f2",
+    color = "#ffffff",
+    linewidth = 0.08
+  ) +
+  ggplot2::geom_sf(
+    data = risco_mg,
+    fill = "#d7301f",
+    color = "#7f0000",
+    alpha = 0.65,
+    linewidth = 0.08
+  ) +
+  ggplot2::labs(
+    title = "Áreas de risco de desastre em Minas Gerais",
+    subtitle = "Sobreposição entre polígonos de risco e limites municipais",
+    caption = "Fonte: geobr; base de áreas de risco do IBGE e CEMADEN."
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold", size = 18),
+    plot.subtitle = ggplot2::element_text(size = 12),
+    plot.caption = ggplot2::element_text(size = 9)
+  )
+```
+
+## **MAPA 4: RECORTE MUNICIPAL — BELO HORIZONTE**
+
+```{r}
+#| label: mapa-risco-bh
+#| fig-width: 11
+#| fig-height: 5.8
+
+ggplot2::ggplot() +
+  ggplot2::geom_sf(
+    data = bh,
+    fill = "#f7f7f7",
+    color = "#252525",
+    linewidth = 0.45
+  ) +
+  ggplot2::geom_sf(
+    data = risco_bh,
+    fill = "#e34a33",
+    color = "#67000d",
+    alpha = 0.70,
+    linewidth = 0.12
+  ) +
+  ggplot2::labs(
+    title = "Áreas de risco de desastre em Belo Horizonte",
+    subtitle = "Exemplo de uso do argumento code_muni com código municipal",
+    caption = "Fonte: geobr; base de áreas de risco do IBGE e CEMADEN."
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold", size = 18),
+    plot.subtitle = ggplot2::element_text(size = 12),
+    plot.caption = ggplot2::element_text(size = 9)
+  )
+```
+
+# **CAPÍTULO 6: COMPARAÇÃO E INTERPRETAÇÃO**
+
+## **COMPARAÇÃO ENTRE AS FUNÇÕES**
+
+```{r}
+#| label: tabela-comparacao
+
+comparacao <- tibble::tribble(
+  ~critério, ~"`read_conservation_units()`", ~"`read_disaster_risk_area()`",
+  "Base representada", "Unidades de conservação", "Áreas de risco de desastre",
+  "Órgão responsável", "MMA", "IBGE e CEMADEN",
+  "Escala territorial", "Brasil", "Brasil, estados ou municípios",
+  "Filtro espacial direto", "Não possui argumento por estado ou município", "Possui argumento `code_muni`",
+  "Período disponível", "202402 e 202503", "2010",
+  "Geometria", "Polígonos", "Polígonos",
+  "Uso principal", "Conservação e planejamento ambiental", "Prevenção e gestão de riscos"
+)
+
+knitr::kable(comparacao)
+```
+
+## **INTERPRETAÇÃO ESPACIAL**
+
+::: box-blue
+A visualização das unidades de conservação mostra como áreas protegidas se distribuem pelo território nacional e como podem ser interpretadas em relação aos biomas brasileiros.
+
+Já a base de áreas de risco permite localizar polígonos associados à vulnerabilidade a deslizamentos e inundações, principalmente quando sobreposta aos limites municipais.
+:::
+
+## **POR QUE NÃO USAMOS MAPAS COROPLÉTICOS?**
+
+::: box-orange
+A orientação da atividade é visualizar geometrias, não representar intensidade numérica.
+
+Por isso, os mapas foram construídos com:
+
+- preenchimentos constantes;
+- contornos simples;
+- sobreposição de camadas;
+- ausência de escala quantitativa;
+- foco em localização e interpretação territorial.
+:::
+
+# **CAPÍTULO 7: CONCLUSÃO**
 
 ## **SÍNTESE DOS ACHADOS**
 
 ::: box-purple
-- [x] **Declínio Morfológico:** Aumento do % de gordura e IMC com a idade.
-- [x] **Perda Funcional:** Redução drástica na flexibilidade e força muscular no grupo de 40-50 anos.
-- [x] **Validação Estatística:** O uso da ANOVA e Tukey permitiu confirmar que o envelhecimento, mesmo em iniciantes, já impõe barreiras físicas claras.
+- [x] A função `read_conservation_units()` retorna polígonos de unidades de conservação brasileiras.
+- [x] A função `read_disaster_risk_area()` retorna polígonos de áreas de risco associadas a deslizamentos e inundações.
+- [x] Ambas retornam objetos espaciais compatíveis com `sf`.
+- [x] As duas bases permitem mapas simples, organizados e interpretáveis.
+- [x] A sobreposição de camadas melhora a leitura territorial sem exigir mapas coropléticos.
 :::
 
-## **CONTRIBUIÇÃO PARA A SOCIEDADE**
+## **CONTRIBUIÇÃO DA ATIVIDADE**
 
-- **Importância dos Testes:** A ANOVA permitiu estratificar o risco por idade, provando que um iniciante de 45 anos não pode receber a mesma carga de treino que um de 20.
-- **Impacto Social:** O estudo destaca a importância da avaliação física prévia em academias. Ao identificar as deficiências funcionais (como a baixa flexibilidade em G3), evita-se lesões e promove-se uma longevidade ativa e saudável para a população de Porto Velho.
+::: box-green
+O exercício mostra como o `geobr` facilita o acesso a bases geográficas oficiais brasileiras.
+
+Com poucas linhas de código em R, é possível baixar geometrias, examinar sua estrutura, identificar suas colunas e produzir mapas de apoio para interpretação espacial.
+:::

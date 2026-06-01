@@ -229,7 +229,7 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div><div class="column" style="width:4%;">
 
 </div><div class="column" style="width:38%;">
-<div class="panel-dark">
+<div class="box-purple">
 <p><strong>FUNÇÕES SORTEADAS</strong></p>
 <ul>
 <li><code>read_conservation_units()</code></li>
@@ -248,14 +248,14 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 <div class="columns">
 <div class="column" style="width:49%;">
-<div class="mini-card">
+<div class="box-purple">
 <p><strong>Unidades de conservação</strong></p>
 <p>Áreas oficialmente delimitadas para proteger biodiversidade, ecossistemas e recursos naturais.</p>
 </div>
 </div><div class="column" style="width:2%;">
 
 </div><div class="column" style="width:49%;">
-<div class="mini-card">
+<div class="box-orange">
 <p><strong>Áreas de risco</strong></p>
 <p>Polígonos associados a riscos geodinâmicos e hidrometeorológicos, como deslizamentos e inundações.</p>
 </div>
@@ -265,21 +265,21 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>ROTEIRO DA APRESENTAÇÃO</strong></h2>
 <div class="columns">
 <div class="column" style="width:32%;">
-<div class="step-card">
+<div class="box-blue">
 <p><strong>1. Introdução</strong></p>
 <p>O que cada base representa e por que ela é relevante.</p>
 </div>
 </div><div class="column" style="width:2%;">
 
 </div><div class="column" style="width:32%;">
-<div class="step-card">
+<div class="box-green">
 <p><strong>2. Exploração</strong></p>
 <p>Argumentos, estrutura espacial e dicionário das colunas.</p>
 </div>
 </div><div class="column" style="width:2%;">
 
 </div><div class="column" style="width:32%;">
-<div class="step-card">
+<div class="box-orange">
 <p><strong>3. Mapas</strong></p>
 <p>Visualização regional, sobreposição de camadas e interpretação.</p>
 </div>
@@ -315,21 +315,50 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </section>
 </div></div>
 </section>
+<section id="disponibilidade-das-bases-no-geobr" class="slide level2">
+<h2><strong>DISPONIBILIDADE DAS BASES NO geobr</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.72em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">FUNÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">BASE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DISPONIBILIDADE_NO_GEOBR</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">RECORTE_USADO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">`read_conservation_units()`</td>
+<td style="text-align: left;">Unidades de conservação</td>
+<td style="text-align: left;">Somente 202402 e 202503</td>
+<td style="text-align: left;">202503</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">`read_disaster_risk_area()`</td>
+<td style="text-align: left;">Áreas de risco de desastre</td>
+<td style="text-align: left;">Somente 2010</td>
+<td style="text-align: left;">2010</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="box-blue">
+<p>Essa informação define os recortes temporais possíveis para a atividade. Portanto, a comparação entre as duas funções é uma comparação entre bases territoriais diferentes, não entre séries históricas.</p>
+</div>
+</section>
 <section id="resumo-técnico-das-bases" class="slide level2">
 <h2><strong>RESUMO TÉCNICO DAS BASES</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 25%">
-<col style="width: 52%">
-</colgroup>
+<table class="caption-top" style="font-size:0.66em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">CRITÉRIO</th>
-<th style="text-align: left;">read_conservation_units()</th>
-<th style="text-align: left;">read_disaster_risk_area()</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">CRITÉRIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">read_conservation_units()</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">read_disaster_risk_area()</th>
 </tr>
 </thead>
 <tbody>
@@ -355,18 +384,13 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tipo de geometria</td>
-<td style="text-align: left;">Polígonos ou multipolígonos</td>
-<td style="text-align: left;">Polígonos ou multipolígonos</td>
+<td style="text-align: left;">Polígonos de áreas protegidas</td>
+<td style="text-align: left;">Polígonos de áreas vulneráveis</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Ano/data usada</td>
-<td style="text-align: left;">202503</td>
-<td style="text-align: left;">2010</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Uso principal</td>
 <td style="text-align: left;">Localizar áreas protegidas</td>
-<td style="text-align: left;">Localizar áreas vulneráveis a deslizamentos e inundações</td>
+<td style="text-align: left;">Localizar áreas sujeitas a desastres</td>
 </tr>
 </tbody>
 </table>
@@ -392,41 +416,37 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>ARGUMENTOS DA FUNÇÃO</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 86%">
-</colgroup>
+<table class="caption-top" style="font-size:0.69em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">ARGUMENTO</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ARGUMENTO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>date</code></td>
-<td style="text-align: left;">Define a data da base no formato AAAAMM. Nesta apresentação foi usada a data 202503.</td>
+<td style="text-align: left;">`date`</td>
+<td style="text-align: left;">Define a data da base no formato AAAAMM.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>simplified</code></td>
-<td style="text-align: left;">Controla se a geometria será simplificada. Para visualização em slides, TRUE é suficiente.</td>
+<td style="text-align: left;">`simplified`</td>
+<td style="text-align: left;">Controla se a geometria será simplificada.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>output</code></td>
-<td style="text-align: left;">Define o formato de saída. O valor ‘sf’ retorna um objeto espacial diretamente manipulável no R.</td>
+<td style="text-align: left;">`output`</td>
+<td style="text-align: left;">Define o formato de saída. O valor 'sf' retorna um objeto espacial.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>showProgress</code></td>
-<td style="text-align: left;">Controla se a barra de progresso será exibida durante o download.</td>
+<td style="text-align: left;">`showProgress`</td>
+<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>cache</code></td>
-<td style="text-align: left;">Permite reaproveitar localmente dados já baixados.</td>
+<td style="text-align: left;">`cache`</td>
+<td style="text-align: left;">Permite reaproveitar dados já baixados.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>verbose</code></td>
-<td style="text-align: left;">Controla a impressão de mensagens informativas durante a execução.</td>
+<td style="text-align: left;">`verbose`</td>
+<td style="text-align: left;">Controla a impressão de mensagens durante a execução.</td>
 </tr>
 </tbody>
 </table>
@@ -450,198 +470,249 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>COMO LER O OBJETO ESPACIAL</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
+<table class="caption-top" style="font-size:0.69em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">ELEMENTO</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ELEMENTO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Objeto sf</td>
-<td style="text-align: left;">Formato espacial usado no R para armazenar tabela de atributos e geometria no mesmo objeto.</td>
+<td style="text-align: left;">Tabela espacial que armazena atributos comuns e geometria no mesmo objeto.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Linha</td>
-<td style="text-align: left;">Cada linha representa uma feição espacial. Nesta apresentação, uma unidade de conservação ou uma área de risco.</td>
+<td style="text-align: left;">Cada linha representa uma feição espacial: uma unidade de conservação ou uma área de risco.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Coluna comum</td>
-<td style="text-align: left;">Armazena atributos descritivos, como nome, código, ano, categoria ou município.</td>
+<td style="text-align: left;">Atributo descritivo da feição, como nome, código, área, categoria ou município.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Coluna geometry</td>
-<td style="text-align: left;">Armazena a forma espacial de cada feição, geralmente como POLYGON ou MULTIPOLYGON.</td>
+<td style="text-align: left;">Coluna especial que guarda a forma espacial da feição.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CRS</td>
-<td style="text-align: left;">Sistema de referência de coordenadas que informa como as geometrias estão posicionadas na superfície terrestre.</td>
+<td style="text-align: left;">Sistema de referência que informa como a geometria está posicionada na superfície terrestre.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Geometria simplificada</td>
-<td style="text-align: left;">Versão com menor complexidade geométrica, útil para mapas de apresentação e processamento mais rápido.</td>
+<td style="text-align: left;">Geometria com menos vértices, útil para mapas rápidos e apresentações.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="dicionário-das-colunas" class="slide level2 scrollable">
-<h2><strong>DICIONÁRIO DAS COLUNAS</strong></h2>
+<section id="polygon-e-multipolygon" class="slide level2">
+<h2><strong>POLYGON E MULTIPOLYGON</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
-</colgroup>
+<table class="caption-top" style="font-size:0.72em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">COLUNA</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">TIPO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">POLYGON</td>
+<td style="text-align: left;">Uma única área contínua delimitada por contorno fechado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MULTIPOLYGON</td>
+<td style="text-align: left;">Uma mesma feição formada por duas ou mais áreas separadas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leitura prática</td>
+<td style="text-align: left;">Ambos representam áreas; o segundo apenas permite partes não contíguas dentro da mesma linha da tabela.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="box-green">
+<p>A distinção é importante porque uma única linha do dataframe pode representar uma área contínua ou um conjunto de áreas separadas pertencentes à mesma feição.</p>
+</div>
+</section>
+<section id="dicionário-das-colunas-unidades-de-conservação-i" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO I</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.62em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">uc_id</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">cd_cnuc</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">wdpa_pid</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">nome_uc</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Denominação oficial da unidade de conservação.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">cria_ano</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">cria_ato</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Ato legal de criação da unidade de conservação.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">outro_ato</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Outros atos legais que alteram características da unidade, como limites, categoria ou nome.</td>
 </tr>
-<tr class="even">
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas-unidades-de-conservação-ii" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO II</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.62em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">pl_manejo</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">co_gestor</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">quali_pol</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">ppgr</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ha_total</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">ha_ato</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">ha_total</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">esfera</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">ha_ato</td>
+<td style="text-align: left;">Ato legal de criação da unidade de conservação.</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">esfera</td>
+<td style="text-align: left;">Esfera administrativa responsável pela unidade de conservação: Federal, Estadual ou Municipal.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas-unidades-de-conservação-iii" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO III</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.62em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td style="text-align: left;">uf</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Unidade da Federação abrangida pela unidade de conservação.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">municipio</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Municípios abrangidos pela unidade de conservação.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">org_gestor</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">grupo</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Grupo de manejo da unidade de conservação, geralmente associado à proteção integral ou ao uso sustentável.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">categoria</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Categoria de manejo da unidade de conservação, conforme a Lei nº 9.985/2000.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">cat_iucn</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Categoria equivalente no sistema IUCN de gestão de áreas protegidas.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">amazonia</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="even">
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas-unidades-de-conservação-iv" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO IV</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.62em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: left;">caatinga</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">cerrado</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">matlantica</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">pampa</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">pantanal</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">marinho</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">situacao</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">limite</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">rbiosfera</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nome_abrev</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">year</td>
-<td style="text-align: left;">Ano de referência da informação espacial.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">date</td>
-<td style="text-align: left;">Data de referência da base no formato AAAAMM.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">geometry</td>
-<td style="text-align: left;">Coluna especial do objeto sf que armazena a geometria espacial.</td>
+<td style="text-align: left;">Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base.</td>
 </tr>
 </tbody>
 </table>
@@ -666,23 +737,23 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 <div class="columns">
 <div class="column" style="width:31%;">
-<div class="metric-green">
+<div class="box-green">
 <p><strong>Unidades carregadas</strong></p>
 <p>361</p>
 </div>
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:31%;">
-<div class="metric-purple">
+<div class="box-purple">
 <p><strong>Estados no recorte</strong></p>
 <p>7</p>
 </div>
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:32%;">
-<div class="metric-blue">
-<p><strong>Data da base</strong></p>
-<p>202503</p>
+<div class="box-blue">
+<p><strong>Recorte usado</strong></p>
+<p>Região Norte</p>
 </div>
 </div></div>
 </section>
@@ -720,45 +791,41 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>ARGUMENTOS DA FUNÇÃO</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 85%">
-</colgroup>
+<table class="caption-top" style="font-size:0.68em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">ARGUMENTO</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">ARGUMENTO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>year</code></td>
-<td style="text-align: left;">Define o ano da base. A base de áreas de risco está disponível para 2010.</td>
+<td style="text-align: left;">`year`</td>
+<td style="text-align: left;">Define o ano da base.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>code_muni</code></td>
-<td style="text-align: left;">Permite baixar o Brasil inteiro, uma unidade da federação ou um município específico.</td>
+<td style="text-align: left;">`code_muni`</td>
+<td style="text-align: left;">Permite baixar o Brasil inteiro, uma UF ou um município específico.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>simplified</code></td>
+<td style="text-align: left;">`simplified`</td>
 <td style="text-align: left;">Controla se a geometria será simplificada.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>output</code></td>
-<td style="text-align: left;">Define o formato de saída. O valor ‘sf’ retorna um objeto espacial.</td>
+<td style="text-align: left;">`output`</td>
+<td style="text-align: left;">Define o formato de saída. O valor 'sf' retorna um objeto espacial.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>showProgress</code></td>
-<td style="text-align: left;">Controla se a barra de progresso será exibida.</td>
+<td style="text-align: left;">`showProgress`</td>
+<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>cache</code></td>
-<td style="text-align: left;">Permite reaproveitar dados baixados anteriormente.</td>
+<td style="text-align: left;">`cache`</td>
+<td style="text-align: left;">Permite reaproveitar dados já baixados.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>verbose</code></td>
-<td style="text-align: left;">Controla a impressão de mensagens informativas.</td>
+<td style="text-align: left;">`verbose`</td>
+<td style="text-align: left;">Controla a impressão de mensagens durante a execução.</td>
 </tr>
 </tbody>
 </table>
@@ -789,64 +856,15 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <span id="cb2-19"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="como-ler-o-objeto-espacial-1" class="slide level2">
-<h2><strong>COMO LER O OBJETO ESPACIAL</strong></h2>
+<section id="dicionário-das-colunas-áreas-de-risco-i" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — ÁREAS DE RISCO I</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
+<table class="caption-top" style="font-size:0.64em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">ELEMENTO</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Objeto sf</td>
-<td style="text-align: left;">Formato espacial usado no R para armazenar tabela de atributos e geometria no mesmo objeto.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Linha</td>
-<td style="text-align: left;">Cada linha representa uma feição espacial. Nesta apresentação, uma unidade de conservação ou uma área de risco.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Coluna comum</td>
-<td style="text-align: left;">Armazena atributos descritivos, como nome, código, ano, categoria ou município.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Coluna geometry</td>
-<td style="text-align: left;">Armazena a forma espacial de cada feição, geralmente como POLYGON ou MULTIPOLYGON.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CRS</td>
-<td style="text-align: left;">Sistema de referência de coordenadas que informa como as geometrias estão posicionadas na superfície terrestre.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Geometria simplificada</td>
-<td style="text-align: left;">Versão com menor complexidade geométrica, útil para mapas de apresentação e processamento mais rápido.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="dicionário-das-colunas-1" class="slide level2 scrollable">
-<h2><strong>DICIONÁRIO DAS COLUNAS</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 92%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">COLUNA</th>
-<th style="text-align: left;">DESCRIÇÃO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
@@ -860,43 +878,60 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </tr>
 <tr class="odd">
 <td style="text-align: left;">geo_bater</td>
-<td style="text-align: left;">Código único do polígono de área de risco, chamado BATER na documentação da base.</td>
+<td style="text-align: left;">Código único do polígono de área de risco.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">origem</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar da base de áreas de risco.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">acuracia</td>
-<td style="text-align: left;">Indicador do grau de sobreposição do polígono de risco com setores censitários e faces de quadra.</td>
+<td style="text-align: left;">Indicador de sobreposição entre o polígono de risco e as unidades censitárias usadas na base.</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">obs</td>
-<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+<td style="text-align: left;">Atributo complementar da base de áreas de risco.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">code_state</td>
-<td style="text-align: left;">Código numérico da unidade da federação.</td>
+<td style="text-align: left;">Código numérico da Unidade da Federação.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas-áreas-de-risco-ii" class="slide level2">
+<h2><strong>DICIONÁRIO DAS COLUNAS — ÁREAS DE RISCO II</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top" style="font-size:0.64em; width:100%; line-height:1.14;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">COLUNA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">name_state</td>
+<td style="text-align: left;">Nome da Unidade da Federação.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">name_state</td>
-<td style="text-align: left;">Nome da unidade da federação.</td>
+<td style="text-align: left;">abbrev_state</td>
+<td style="text-align: left;">Sigla da Unidade da Federação.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">abbrev_state</td>
-<td style="text-align: left;">Sigla da unidade da federação.</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">code_region</td>
 <td style="text-align: left;">Código da grande região brasileira.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">name_region</td>
 <td style="text-align: left;">Nome da grande região brasileira.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">geometry</td>
-<td style="text-align: left;">Coluna especial do objeto sf que armazena a geometria espacial.</td>
+<td style="text-align: left;">Geometria espacial da área de risco, armazenada como POLYGON ou MULTIPOLYGON.</td>
 </tr>
 </tbody>
 </table>
@@ -921,23 +956,23 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 <div class="columns">
 <div class="column" style="width:31%;">
-<div class="metric-orange">
+<div class="box-orange">
 <p><strong>Áreas carregadas</strong></p>
 <p>4.517</p>
 </div>
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:31%;">
-<div class="metric-purple">
+<div class="box-purple">
 <p><strong>Estados no recorte</strong></p>
 <p>4</p>
 </div>
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:32%;">
-<div class="metric-blue">
-<p><strong>Ano da base</strong></p>
-<p>2010</p>
+<div class="box-blue">
+<p><strong>Recorte usado</strong></p>
+<p>Região Sudeste</p>
 </div>
 </div></div>
 </section>
@@ -984,19 +1019,13 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>SOBREPOSIÇÃO DE CAMADAS</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 15%">
-<col style="width: 21%">
-<col style="width: 38%">
-</colgroup>
+<table class="caption-top" style="font-size:0.64em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">MAPA</th>
-<th style="text-align: left;">CAMADA_PRINCIPAL</th>
-<th style="text-align: left;">CAMADA_DE_APOIO</th>
-<th style="text-align: left;">FINALIDADE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">MAPA</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">CAMADA_PRINCIPAL</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">CAMADA_DE_APOIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">FINALIDADE</th>
 </tr>
 </thead>
 <tbody>
@@ -1052,17 +1081,12 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h2><strong>COMPARAÇÃO FINAL</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 25%">
-<col style="width: 52%">
-</colgroup>
+<table class="caption-top" style="font-size:0.66em; width:100%; line-height:1.14;">
 <thead>
 <tr class="header">
-<th style="text-align: left;">CRITÉRIO</th>
-<th style="text-align: left;">read_conservation_units()</th>
-<th style="text-align: left;">read_disaster_risk_area()</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">CRITÉRIO</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">read_conservation_units()</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">read_disaster_risk_area()</th>
 </tr>
 </thead>
 <tbody>
@@ -1088,18 +1112,13 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Tipo de geometria</td>
-<td style="text-align: left;">Polígonos ou multipolígonos</td>
-<td style="text-align: left;">Polígonos ou multipolígonos</td>
+<td style="text-align: left;">Polígonos de áreas protegidas</td>
+<td style="text-align: left;">Polígonos de áreas vulneráveis</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Ano/data usada</td>
-<td style="text-align: left;">202503</td>
-<td style="text-align: left;">2010</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Uso principal</td>
 <td style="text-align: left;">Localizar áreas protegidas</td>
-<td style="text-align: left;">Localizar áreas vulneráveis a deslizamentos e inundações</td>
+<td style="text-align: left;">Localizar áreas sujeitas a desastres</td>
 </tr>
 </tbody>
 </table>
@@ -1131,7 +1150,7 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <p>As duas funções mostram que o <code>geobr</code> não serve apenas para desenhar mapas.</p>
 <p>Ele permite acessar bases oficiais que traduzem diferentes formas de organização do território brasileiro: proteção ambiental, vulnerabilidade, prevenção e planejamento.</p>
 </div>
-<div class="panel-dark">
+<div class="box-blue">
 <p><strong>Mensagem central</strong></p>
 <p>Com poucas linhas de R, é possível baixar, examinar e visualizar geometrias oficiais brasileiras em diferentes escalas territoriais.</p>
 </div>
@@ -1298,14 +1317,14 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'slide',
+        transition: 'none',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'fade',
+        backgroundTransition: 'none',
 
         // Number of slides away from the current that are visible
         viewDistance: 3,

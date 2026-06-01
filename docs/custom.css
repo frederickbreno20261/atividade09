@@ -1,319 +1,133 @@
-
-```css
-/* ===== Base geral ===== */
-
-:root {
-  --navy: #0f172a;
-  --slate: #334155;
-  --muted: #64748b;
-  --paper: #f8fafc;
-  --blue: #2563eb;
-  --blue-soft: #dbeafe;
-  --purple: #7c3aed;
-  --purple-soft: #ede9fe;
-  --green: #059669;
-  --green-soft: #d1fae5;
-  --orange: #ea580c;
-  --orange-soft: #ffedd5;
-  --gold: #c49a3a;
-  --line: rgba(15, 23, 42, 0.12);
-}
+/* ===== Base ===== */
 
 .reveal {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  font-size: 29px;
-  color: var(--navy);
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(5, 150, 105, 0.10), transparent 30%),
-    linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+  font-size: 30px;
+  background-color: #eef2f7; /* fundo suave, cinza-azulado pastel */
+  color: #0f172a;
+}
+
+.reveal .slides section li{
+    text-align: justify;
 }
 
 .reveal .slides {
-  text-align: left;
+  text-align: justify;
 }
 
-.reveal .slides section {
-  padding: 14px 18px;
-}
-
-.reveal p,
-.reveal li {
-  line-height: 1.35;
-}
-
-.reveal strong {
+/* ===== Títulos ===== */
+.reveal h1 {
+  font-size: 2.4em;
   font-weight: 800;
+  color: #336699;
 }
 
-.reveal ul {
-  margin-top: 0.35em;
+.reveal h2 {
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #336699;
 }
 
-.reveal ul li::marker {
-  color: var(--blue);
+.reveal h3 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #336699;
 }
+
 
 /* ===== Slide de título ===== */
-
 .reveal .title-slide {
-  color: white;
+  background: linear-gradient(
+    135deg,
+    #2563eb99 0%,   /* azul com transparência */
+    #7c3aed99 50%,   /* roxo com transparência */
+    #05966999 100%   /* verde com transparência */
+  );
+  color: #336699;
 }
 
 .reveal .title-slide h1,
 .reveal .title-slide h2,
 .reveal .title-slide p {
   color: white;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
-.deck-kicker {
-  display: inline-block;
-  color: #f7d777;
-  font-size: 0.58em;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 800;
-  margin-bottom: 0.2em;
+/* ===== Texto ===== */
+.reveal p,
+.reveal li {
+  line-height: 1.45;
 }
 
-.deck-title {
-  display: inline-block;
-  color: #ffffff;
-  font-size: 0.92em;
-  font-weight: 900;
-  line-height: 1.02;
+/* ===== Listas ===== */
+.reveal ul li::marker {
+  color: #2563eb;
 }
 
-/* ===== Títulos ===== */
-
-.reveal h1 {
-  font-size: 2.25em;
-  font-weight: 900;
-  color: var(--navy);
-  letter-spacing: -0.03em;
-}
-
-.reveal h2 {
-  font-size: 1.55em;
-  font-weight: 850;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.55em;
-  padding-bottom: 0.25em;
-  border-bottom: 3px solid rgba(196, 154, 58, 0.55);
-}
-
-.reveal h3 {
-  font-size: 1.08em;
-  font-weight: 800;
-  color: var(--slate);
-}
-
-/* ===== Etiquetas ===== */
-
-.section-label {
-  display: inline-block;
-  background: rgba(196, 154, 58, 0.16);
-  border: 1px solid rgba(196, 154, 58, 0.45);
-  color: #725a1d;
-  border-radius: 999px;
-  padding: 0.18em 0.65em;
-  font-size: 0.68em;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.5em;
-}
-
-/* ===== Boxes principais ===== */
-
-.box-blue,
-.box-purple,
-.box-green,
-.box-orange,
-.panel-dark,
-.mini-card,
-.step-card {
-  border-radius: 18px;
-  padding: 0.78em 0.9em;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-  border: 1px solid var(--line);
-}
-
+/* ===== Caixas coloridas ===== */
 .box-blue {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border-left: 8px solid var(--blue);
+  border-left: 8px solid #2563eb;
+  background: #eff6ff;
+  padding: 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .box-purple {
-  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  border-left: 8px solid var(--purple);
+  border-left: 8px solid #7c3aed;
+  background: #f5f3ff;
+  padding: 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .box-green {
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  border-left: 8px solid var(--green);
+  border-left: 8px solid #059669;
+  background: #ecfdf5;
+  padding: 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .box-orange {
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  border-left: 8px solid var(--orange);
+  border-left: 8px solid #ea580c;
+  background: #fff7ed;
+  padding: 0.7em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.panel-dark {
-  color: #e5e7eb;
-  background:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96));
-  border: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.panel-dark strong {
-  color: #ffffff;
-}
-
-.mini-card {
-  background: rgba(255, 255, 255, 0.84);
-  border-top: 5px solid var(--gold);
-}
-
-.step-card {
-  background: rgba(255, 255, 255, 0.82);
-  border-top: 5px solid var(--blue);
-  min-height: 135px;
-}
-
-/* ===== Métricas ===== */
-
-.metric-green,
-.metric-purple,
-.metric-blue,
-.metric-orange {
-  border-radius: 16px;
-  padding: 0.62em 0.75em;
-  background: #ffffff;
-  text-align: center;
-  font-weight: 800;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.10);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-}
-
-.metric-green {
-  color: var(--green);
-  border-top: 6px solid var(--green);
-}
-
-.metric-purple {
-  color: var(--purple);
-  border-top: 6px solid var(--purple);
-}
-
-.metric-blue {
-  color: var(--blue);
-  border-top: 6px solid var(--blue);
-}
-
-.metric-orange {
-  color: var(--orange);
-  border-top: 6px solid var(--orange);
-}
-
-/* ===== Tabelas ===== */
-
-.reveal table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.64em;
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-}
-
-.reveal table th {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: #ffffff;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.58em 0.7em;
-  border: none;
-}
-
-.reveal table td {
-  padding: 0.52em 0.7em;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  vertical-align: top;
-}
-
-.reveal table tr:nth-child(even) td {
-  background: #f8fafc;
-}
-
-.reveal table tr:last-child td {
-  border-bottom: none;
-}
-
-.scrollable {
-  max-height: 545px;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-/* ===== Código ===== */
-
-.reveal pre {
-  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
-  border-radius: 16px;
-}
-
-.reveal pre code {
-  font-size: 0.75em;
-  background: #020617;
-  color: #e5e7eb;
-  border-radius: 16px;
-  padding: 1em;
-}
-
-/* ===== Imagens e mapas ===== */
-
-.reveal img {
-  border-radius: 18px;
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.14);
-}
-
-/* ===== Rodapé e numeração ===== */
-
-.reveal .slide-number {
-  color: var(--slate);
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 999px;
-  padding: 3px 10px;
+/* ===== Destaques ===== */
+.highlight-blue {
+  color: #2563eb;
   font-weight: 700;
 }
 
+.highlight-purple {
+  color: #7c3aed;
+  font-weight: 700;
+}
+
+.highlight-green {
+  color: #059669;
+  font-weight: 700;
+}
+
+.highlight-orange {
+  color: #ea580c;
+  font-weight: 700;
+}
+
+/* ===== Código ===== */
+.reveal pre code {
+  font-size: 0.78em;
+  background: #020617;
+  color: #e5e7eb;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+/* ===== Rodapé ===== */
 .reveal .footer {
   font-size: 0.5em;
-  color: var(--muted);
-}
-
-/* ===== Ajustes finos ===== */
-
-.reveal blockquote {
-  border-left: 6px solid var(--gold);
-  background: rgba(255, 255, 255, 0.78);
-  border-radius: 14px;
-  padding: 0.7em 1em;
-}
-
-.reveal code {
-  color: #0f766e;
-  background: rgba(15, 118, 110, 0.08);
-  border-radius: 6px;
-  padding: 0.05em 0.25em;
-}
-
-.reveal pre code {
-  color: #e5e7eb;
-  background: transparent;
+  color: #64748b;
 }

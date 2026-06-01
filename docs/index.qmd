@@ -10,12 +10,13 @@ format:
     css: custom.css
     slide-number: true
     incremental: false
-    transition: slide
-    background-transition: fade
+    transition: none
+    background-transition: none
     width: 1280
     height: 720
     margin: 0.07
     auto-stretch: false
+    pdf-separate-fragments: false
     title-slide-attributes:
       data-background-image: "Capa 2.jpg"
       data-background-size: cover
@@ -78,16 +79,169 @@ formatar_numero <- function(x) {
   format(x, big.mark = ".", decimal.mark = ",")
 }
 
-montar_dicionario <- function(objeto_sf, dicionario) {
-  tibble::tibble(COLUNA = names(objeto_sf)) |>
-    dplyr::left_join(dicionario, by = "COLUNA") |>
-    dplyr::mutate(
-      DESCRIÇÃO = dplyr::if_else(
-        is.na(DESCRIÇÃO),
-        "Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.",
-        DESCRIÇÃO
-      )
-    )
+tabela_slide <- function(x, tamanho_fonte = "0.70em") {
+  knitr::kable(
+    x,
+    format = "html",
+    table.attr = paste0(
+      "style='font-size:", tamanho_fonte, "; width:100%; line-height:1.14;'"
+    ),
+    escape = FALSE
+  )
+}
+
+normalizar_nome <- function(x) {
+  x <- iconv(x, from = "", to = "ASCII//TRANSLIT")
+  x <- tolower(x)
+  x <- gsub("[^a-z0-9]+", "_", x)
+  x <- gsub("^_|_$", "", x)
+  x
+}
+
+descrever_coluna_uc <- function(coluna) {
+  n <- normalizar_nome(coluna)
+
+  dplyr::case_when(
+    n %in% c("geometry", "geom") ~
+      "Geometria espacial da unidade de conservação, armazenada como POLYGON ou MULTIPOLYGON.",
+
+    grepl("codigo.*uc|code.*conservation|conservation.*code|id.*uc|code_conservation_unit", n) ~
+      "Código de identificação da unidade de conservação no Cadastro Nacional de Unidades de Conservação - CNUC.",
+
+    grepl("nome.*uc|name.*conservation|conservation.*name|name_conservation_unit", n) ~
+      "Denominação oficial da unidade de conservação.",
+
+    grepl("esfera|sphere|government|administrativa|admin", n) ~
+      "Esfera administrativa responsável pela unidade de conservação: Federal, Estadual ou Municipal.",
+
+    grepl("iucn", n) ~
+      "Categoria equivalente no sistema IUCN de gestão de áreas protegidas.",
+
+    grepl("categoria|category", n) ~
+      "Categoria de manejo da unidade de conservação, conforme a Lei nº 9.985/2000.",
+
+    grepl("grupo|group", n) ~
+      "Grupo de manejo da unidade de conservação, geralmente associado à proteção integral ou ao uso sustentável.",
+
+    n %in% c("uf", "abbrev_state", "sigla_uf", "state_abbrev") ~
+      "Unidade da Federação abrangida pela unidade de conservação.",
+
+    grepl("code_state|codigo_uf|cod_uf", n) ~
+      "Código numérico da Unidade da Federação na padronização territorial do geobr.",
+
+    grepl("name_state|nome_uf|nome_estado", n) ~
+      "Nome da Unidade da Federação na padronização territorial do geobr.",
+
+    grepl("code_region|codigo_regiao|cod_regiao", n) ~
+      "Código da grande região brasileira na padronização territorial do geobr.",
+
+    grepl("name_region|nome_regiao", n) ~
+      "Nome da grande região brasileira na padronização territorial do geobr.",
+
+    grepl("ano.*cri|criacao.*ano|creation.*year|year.*creation", n) ~
+      "Ano do ato legal de criação da unidade de conservação.",
+
+    grepl("outro|other", n) & grepl("ato|legal|act", n) ~
+      "Outros atos legais que alteram características da unidade, como limites, categoria ou nome.",
+
+    grepl("ato|legal|act", n) ~
+      "Ato legal de criação da unidade de conservação.",
+
+    grepl("municip", n) ~
+      "Municípios abrangidos pela unidade de conservação.",
+
+    grepl("plano|management.*plan|plan.*management", n) ~
+      "Indica se a unidade possui plano de manejo concluído.",
+
+    grepl("conselho|council", n) ~
+      "Indica se a unidade possui conselho gestor reconhecido pelo órgão competente.",
+
+    grepl("area", n) & grepl("amazon|amazonia", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Amazônia.",
+
+    grepl("area", n) & grepl("caatinga", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Caatinga.",
+
+    grepl("area", n) & grepl("cerrado", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Cerrado.",
+
+    grepl("area", n) & grepl("mata|atlantic", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Mata Atlântica.",
+
+    grepl("area", n) & grepl("pampa", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Pampa.",
+
+    grepl("area", n) & grepl("pantanal", n) ~
+      "Área da unidade de conservação, em hectares, localizada no bioma Pantanal.",
+
+    grepl("area", n) & grepl("marinha|marine", n) ~
+      "Área da unidade de conservação, em hectares, localizada em área marinha.",
+
+    grepl("area", n) ~
+      "Área total da unidade de conservação, em hectares.",
+
+    n %in% c("year", "ano") ~
+      "Ano de referência do registro na base retornada pelo geobr.",
+
+    n %in% c("date", "data") ~
+      "Data de referência da base no formato AAAAMM.",
+
+    TRUE ~
+      "Atributo complementar mantido pelo geobr para identificação, harmonização ou cruzamento territorial da base."
+  )
+}
+
+descrever_coluna_risco <- function(coluna) {
+  n <- normalizar_nome(coluna)
+
+  dplyr::case_when(
+    n %in% c("geometry", "geom") ~
+      "Geometria espacial da área de risco, armazenada como POLYGON ou MULTIPOLYGON.",
+
+    grepl("geo_bater|bater", n) ~
+      "Código único do polígono de área de risco.",
+
+    grepl("acuracia|accuracy", n) ~
+      "Indicador de sobreposição entre o polígono de risco e as unidades censitárias usadas na base.",
+
+    n %in% c("num", "numero", "number") ~
+      "Número de áreas de risco contidas no polígono considerado.",
+
+    grepl("code_muni|cod_muni|codigo_muni", n) ~
+      "Código IBGE do município associado à área de risco.",
+
+    grepl("name_muni|nome_muni", n) ~
+      "Nome do município associado à área de risco.",
+
+    grepl("code_state|codigo_uf|cod_uf", n) ~
+      "Código numérico da Unidade da Federação.",
+
+    grepl("abbrev_state|uf|sigla", n) ~
+      "Sigla da Unidade da Federação.",
+
+    grepl("name_state|nome_estado", n) ~
+      "Nome da Unidade da Federação.",
+
+    grepl("code_region|codigo_regiao", n) ~
+      "Código da grande região brasileira.",
+
+    grepl("name_region|nome_regiao", n) ~
+      "Nome da grande região brasileira.",
+
+    n %in% c("year", "ano") ~
+      "Ano de referência da base.",
+
+    TRUE ~
+      "Atributo complementar da base de áreas de risco."
+  )
+}
+
+fatiar_linhas <- function(x, inicio, fim) {
+  if (nrow(x) < inicio) {
+    return(x[0, , drop = FALSE])
+  }
+
+  x[inicio:min(fim, nrow(x)), , drop = FALSE]
 }
 
 ler_risco_uf <- function(uf) {
@@ -114,6 +268,9 @@ ler_municipios_uf <- function(uf) {
 }
 
 selecionar_intersecao <- function(camada, recorte) {
+  camada <- sf::st_make_valid(camada)
+  recorte <- sf::st_make_valid(recorte)
+  recorte <- sf::st_transform(recorte, sf::st_crs(camada))
   limite <- sf::st_union(recorte)
   indice <- lengths(sf::st_intersects(camada, limite)) > 0
   camada[indice, ]
@@ -133,14 +290,6 @@ risco_bh <- geobr::read_disaster_risk_area(
   code_muni = 3106200,
   simplified = TRUE,
   output = "sf",
-  showProgress = FALSE,
-  cache = TRUE,
-  verbose = FALSE
-)
-
-brasil <- geobr::read_country(
-  year = 2025,
-  simplified = TRUE,
   showProgress = FALSE,
   cache = TRUE,
   verbose = FALSE
@@ -193,75 +342,70 @@ municipios_sudeste <- dplyr::bind_rows(
   lapply(ufs_sudeste, ler_municipios_uf)
 )
 
-dicionario_uc <- tibble::tribble(
-  ~COLUNA, ~DESCRIÇÃO,
-  "code_conservation_unit", "Código identificador da unidade de conservação.",
-  "name_conservation_unit", "Nome oficial da unidade de conservação.",
-  "code_state", "Código numérico da unidade da federação associada à geometria.",
-  "abbrev_state", "Sigla da unidade da federação.",
-  "name_state", "Nome da unidade da federação.",
-  "code_region", "Código da grande região brasileira.",
-  "name_region", "Nome da grande região brasileira.",
-  "category", "Categoria de manejo da unidade de conservação.",
-  "group", "Grupo da unidade de conservação, usualmente associado à proteção integral ou ao uso sustentável.",
-  "sphere", "Esfera administrativa responsável pela unidade de conservação.",
-  "area_ha", "Área da unidade de conservação em hectares.",
-  "year", "Ano de referência da informação espacial.",
-  "date", "Data de referência da base no formato AAAAMM.",
-  "geometry", "Coluna especial do objeto sf que armazena a geometria espacial.",
-  "geom", "Coluna especial do objeto sf que armazena a geometria espacial."
+colunas_uc <- tibble::tibble(
+  COLUNA = names(uc),
+  DESCRIÇÃO = vapply(names(uc), descrever_coluna_uc, character(1))
 )
 
-dicionario_risco <- tibble::tribble(
-  ~COLUNA, ~DESCRIÇÃO,
-  "geo_bater", "Código único do polígono de área de risco, chamado BATER na documentação da base.",
-  "acuracia", "Indicador do grau de sobreposição do polígono de risco com setores censitários e faces de quadra.",
-  "num", "Número de áreas de risco contidas no polígono considerado.",
-  "code_muni", "Código IBGE do município associado à área de risco.",
-  "name_muni", "Nome do município associado à área de risco.",
-  "code_state", "Código numérico da unidade da federação.",
-  "abbrev_state", "Sigla da unidade da federação.",
-  "name_state", "Nome da unidade da federação.",
-  "code_region", "Código da grande região brasileira.",
-  "name_region", "Nome da grande região brasileira.",
-  "year", "Ano de referência da base.",
-  "geometry", "Coluna especial do objeto sf que armazena a geometria espacial.",
-  "geom", "Coluna especial do objeto sf que armazena a geometria espacial."
+colunas_risco <- tibble::tibble(
+  COLUNA = names(risco_sudeste),
+  DESCRIÇÃO = vapply(names(risco_sudeste), descrever_coluna_risco, character(1))
 )
 
-colunas_uc <- montar_dicionario(uc, dicionario_uc)
+colunas_uc_1 <- fatiar_linhas(colunas_uc, 1, 7)
 
-colunas_risco <- montar_dicionario(risco_sudeste, dicionario_risco)
+colunas_uc_2 <- fatiar_linhas(colunas_uc, 8, 14)
+
+colunas_uc_3 <- fatiar_linhas(colunas_uc, 15, 21)
+
+colunas_uc_4 <- fatiar_linhas(colunas_uc, 22, 28)
+
+colunas_risco_1 <- fatiar_linhas(colunas_risco, 1, 7)
+
+colunas_risco_2 <- fatiar_linhas(colunas_risco, 8, 14)
 
 leitura_objeto_sf <- tibble::tribble(
   ~ELEMENTO, ~DESCRIÇÃO,
-  "Objeto sf", "Formato espacial usado no R para armazenar tabela de atributos e geometria no mesmo objeto.",
-  "Linha", "Cada linha representa uma feição espacial. Nesta apresentação, uma unidade de conservação ou uma área de risco.",
-  "Coluna comum", "Armazena atributos descritivos, como nome, código, ano, categoria ou município.",
-  "Coluna geometry", "Armazena a forma espacial de cada feição, geralmente como POLYGON ou MULTIPOLYGON.",
-  "CRS", "Sistema de referência de coordenadas que informa como as geometrias estão posicionadas na superfície terrestre.",
-  "Geometria simplificada", "Versão com menor complexidade geométrica, útil para mapas de apresentação e processamento mais rápido."
+  "Objeto sf", "Tabela espacial que armazena atributos comuns e geometria no mesmo objeto.",
+  "Linha", "Cada linha representa uma feição espacial: uma unidade de conservação ou uma área de risco.",
+  "Coluna comum", "Atributo descritivo da feição, como nome, código, área, categoria ou município.",
+  "Coluna geometry", "Coluna especial que guarda a forma espacial da feição.",
+  "CRS", "Sistema de referência que informa como a geometria está posicionada na superfície terrestre.",
+  "Geometria simplificada", "Geometria com menos vértices, útil para mapas rápidos e apresentações."
+)
+
+poligonos_explicacao <- tibble::tribble(
+  ~TIPO, ~DESCRIÇÃO,
+  "POLYGON", "Uma única área contínua delimitada por contorno fechado.",
+  "MULTIPOLYGON", "Uma mesma feição formada por duas ou mais áreas separadas.",
+  "Leitura prática", "Ambos representam áreas; o segundo apenas permite partes não contíguas dentro da mesma linha da tabela."
 )
 
 argumentos_uc <- tibble::tribble(
   ~ARGUMENTO, ~DESCRIÇÃO,
-  "`date`", "Define a data da base no formato AAAAMM. Nesta apresentação foi usada a data 202503.",
-  "`simplified`", "Controla se a geometria será simplificada. Para visualização em slides, TRUE é suficiente.",
-  "`output`", "Define o formato de saída. O valor 'sf' retorna um objeto espacial diretamente manipulável no R.",
-  "`showProgress`", "Controla se a barra de progresso será exibida durante o download.",
-  "`cache`", "Permite reaproveitar localmente dados já baixados.",
-  "`verbose`", "Controla a impressão de mensagens informativas durante a execução."
+  "`date`", "Define a data da base no formato AAAAMM.",
+  "`simplified`", "Controla se a geometria será simplificada.",
+  "`output`", "Define o formato de saída. O valor 'sf' retorna um objeto espacial.",
+  "`showProgress`", "Controla a exibição da barra de progresso.",
+  "`cache`", "Permite reaproveitar dados já baixados.",
+  "`verbose`", "Controla a impressão de mensagens durante a execução."
 )
 
 argumentos_risco <- tibble::tribble(
   ~ARGUMENTO, ~DESCRIÇÃO,
-  "`year`", "Define o ano da base. A base de áreas de risco está disponível para 2010.",
-  "`code_muni`", "Permite baixar o Brasil inteiro, uma unidade da federação ou um município específico.",
+  "`year`", "Define o ano da base.",
+  "`code_muni`", "Permite baixar o Brasil inteiro, uma UF ou um município específico.",
   "`simplified`", "Controla se a geometria será simplificada.",
   "`output`", "Define o formato de saída. O valor 'sf' retorna um objeto espacial.",
-  "`showProgress`", "Controla se a barra de progresso será exibida.",
-  "`cache`", "Permite reaproveitar dados baixados anteriormente.",
-  "`verbose`", "Controla a impressão de mensagens informativas."
+  "`showProgress`", "Controla a exibição da barra de progresso.",
+  "`cache`", "Permite reaproveitar dados já baixados.",
+  "`verbose`", "Controla a impressão de mensagens durante a execução."
+)
+
+disponibilidade_bases <- tibble::tribble(
+  ~FUNÇÃO, ~BASE, ~DISPONIBILIDADE_NO_GEOBR, ~RECORTE_USADO,
+  "`read_conservation_units()`", "Unidades de conservação", "Somente 202402 e 202503", "202503",
+  "`read_disaster_risk_area()`", "Áreas de risco de desastre", "Somente 2010", "2010"
 )
 
 comparacao_funcoes <- tibble::tribble(
@@ -270,9 +414,8 @@ comparacao_funcoes <- tibble::tribble(
   "Base representada", "Unidades de conservação", "Áreas de risco de desastre",
   "Fonte oficial", "Ministério do Meio Ambiente", "IBGE e CEMADEN",
   "Recorte usado nos mapas", "Região Norte", "Região Sudeste e município de Belo Horizonte",
-  "Tipo de geometria", "Polígonos ou multipolígonos", "Polígonos ou multipolígonos",
-  "Ano/data usada", "202503", "2010",
-  "Uso principal", "Localizar áreas protegidas", "Localizar áreas vulneráveis a deslizamentos e inundações"
+  "Tipo de geometria", "Polígonos de áreas protegidas", "Polígonos de áreas vulneráveis",
+  "Uso principal", "Localizar áreas protegidas", "Localizar áreas sujeitas a desastres"
 )
 
 sobreposicoes <- tibble::tribble(
@@ -293,20 +436,18 @@ n_estados_norte <- nrow(estados_norte)
 
 n_estados_sudeste <- nrow(estados_sudeste)
 
-n_biomas_norte <- nrow(biomas_norte)
-
 tema_mapa <- ggplot2::theme_void() +
   ggplot2::theme(
-    plot.title = ggplot2::element_text(face = "bold", size = 18, color = "#0f172a"),
-    plot.subtitle = ggplot2::element_text(size = 12, color = "#475569"),
-    plot.caption = ggplot2::element_text(size = 9, color = "#64748b"),
-    plot.margin = ggplot2::margin(4, 4, 4, 4)
+    plot.title = ggplot2::element_text(face = "bold", size = 17, color = "#0f172a"),
+    plot.subtitle = ggplot2::element_text(size = 11, color = "#475569"),
+    plot.caption = ggplot2::element_text(size = 8.5, color = "#64748b"),
+    plot.margin = ggplot2::margin(2, 2, 2, 2)
   )
 ```
 
 # **CAPÍTULO 1: INTRODUÇÃO**
 
-## **CONTEXTO DA ATIVIDADE** .{scrollable}
+## **CONTEXTO DA ATIVIDADE**
 
 ::: section-label
 Bases geográficas oficiais no R
@@ -329,7 +470,7 @@ Nesta apresentação, o foco será compreender como duas funções do pacote ret
 
 ::: {.column width="38%"}
 
-::: panel-dark
+::: box-purple
 **FUNÇÕES SORTEADAS**
 
 - `read_conservation_units()`
@@ -356,7 +497,7 @@ A segunda mostra o território como espaço de **vulnerabilidade, prevenção e 
 
 ::: {.column width="49%"}
 
-::: mini-card
+::: box-purple
 **Unidades de conservação**
 
 Áreas oficialmente delimitadas para proteger biodiversidade, ecossistemas e recursos naturais.
@@ -369,7 +510,7 @@ A segunda mostra o território como espaço de **vulnerabilidade, prevenção e 
 
 ::: {.column width="49%"}
 
-::: mini-card
+::: box-orange
 **Áreas de risco**
 
 Polígonos associados a riscos geodinâmicos e hidrometeorológicos, como deslizamentos e inundações.
@@ -385,7 +526,7 @@ Polígonos associados a riscos geodinâmicos e hidrometeorológicos, como desliz
 
 ::: {.column width="32%"}
 
-::: step-card
+::: box-blue
 **1. Introdução**
 
 O que cada base representa e por que ela é relevante.
@@ -398,7 +539,7 @@ O que cada base representa e por que ela é relevante.
 
 ::: {.column width="32%"}
 
-::: step-card
+::: box-green
 **2. Exploração**
 
 Argumentos, estrutura espacial e dicionário das colunas.
@@ -411,7 +552,7 @@ Argumentos, estrutura espacial e dicionário das colunas.
 
 ::: {.column width="32%"}
 
-::: step-card
+::: box-orange
 **3. Mapas**
 
 Visualização regional, sobreposição de camadas e interpretação.
@@ -468,13 +609,26 @@ Visualização regional, sobreposição de camadas e interpretação.
 
 ::::
 
+## **DISPONIBILIDADE DAS BASES NO geobr**
+
+```{r}
+#| label: tabela-disponibilidade-bases
+
+disponibilidade_bases |>
+  tabela_slide(tamanho_fonte = "0.72em")
+```
+
+::: box-blue
+Essa informação define os recortes temporais possíveis para a atividade. Portanto, a comparação entre as duas funções é uma comparação entre bases territoriais diferentes, não entre séries históricas.
+:::
+
 ## **RESUMO TÉCNICO DAS BASES**
 
 ```{r}
 #| label: tabela-comparacao-inicial
 
 comparacao_funcoes |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.66em")
 ```
 
 # **CAPÍTULO 3: EXPLORAÇÃO DA FUNÇÃO 1**
@@ -497,7 +651,7 @@ Para tornar a visualização mais interpretável, a apresentação usa um recort
 #| label: tabela-argumentos-uc
 
 argumentos_uc |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.69em")
 ```
 
 ## **EXEMPLO DE USO DA FUNÇÃO**
@@ -523,16 +677,56 @@ uc <- geobr::read_conservation_units(
 #| label: estrutura-uc-explicada
 
 leitura_objeto_sf |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.69em")
 ```
 
-## **DICIONÁRIO DAS COLUNAS** {.scrollable}
+## **POLYGON E MULTIPOLYGON**
 
 ```{r}
-#| label: dicionario-colunas-uc
+#| label: polygon-multipolygon
 
-colunas_uc |>
-  knitr::kable()
+poligonos_explicacao |>
+  tabela_slide(tamanho_fonte = "0.72em")
+```
+
+::: box-green
+A distinção é importante porque uma única linha do dataframe pode representar uma área contínua ou um conjunto de áreas separadas pertencentes à mesma feição.
+:::
+
+## **DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO I**
+
+```{r}
+#| label: dicionario-colunas-uc-1
+
+colunas_uc_1 |>
+  tabela_slide(tamanho_fonte = "0.62em")
+```
+
+## **DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO II**
+
+```{r}
+#| label: dicionario-colunas-uc-2
+
+colunas_uc_2 |>
+  tabela_slide(tamanho_fonte = "0.62em")
+```
+
+## **DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO III**
+
+```{r}
+#| label: dicionario-colunas-uc-3
+
+colunas_uc_3 |>
+  tabela_slide(tamanho_fonte = "0.62em")
+```
+
+## **DICIONÁRIO DAS COLUNAS — UNIDADES DE CONSERVAÇÃO IV**
+
+```{r}
+#| label: dicionario-colunas-uc-4
+
+colunas_uc_4 |>
+  tabela_slide(tamanho_fonte = "0.62em")
 ```
 
 # **CAPÍTULO 4: MAPAS DE UNIDADES DE CONSERVAÇÃO**
@@ -541,8 +735,8 @@ colunas_uc |>
 
 ```{r}
 #| label: mapa-uc-norte
-#| fig-width: 11.5
-#| fig-height: 5.35
+#| fig-width: 11.3
+#| fig-height: 4.75
 
 ggplot2::ggplot() +
   ggplot2::geom_sf(
@@ -570,7 +764,7 @@ ggplot2::ggplot() +
 
 ::: {.column width="31%"}
 
-::: metric-green
+::: box-green
 **Unidades carregadas**
 
 `r formatar_numero(n_uc_norte)`
@@ -583,7 +777,7 @@ ggplot2::ggplot() +
 
 ::: {.column width="31%"}
 
-::: metric-purple
+::: box-purple
 **Estados no recorte**
 
 `r formatar_numero(n_estados_norte)`
@@ -596,10 +790,10 @@ ggplot2::ggplot() +
 
 ::: {.column width="32%"}
 
-::: metric-blue
-**Data da base**
+::: box-blue
+**Recorte usado**
 
-202503
+Região Norte
 :::
 
 :::
@@ -610,8 +804,8 @@ ggplot2::ggplot() +
 
 ```{r}
 #| label: mapa-uc-biomas-norte
-#| fig-width: 11.5
-#| fig-height: 5.35
+#| fig-width: 11.3
+#| fig-height: 4.85
 
 ggplot2::ggplot() +
   ggplot2::geom_sf(
@@ -666,7 +860,7 @@ Nesta apresentação, a leitura principal será feita para a **Região Sudeste**
 #| label: tabela-argumentos-risco
 
 argumentos_risco |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.68em")
 ```
 
 ## **EXEMPLO DE USO DA FUNÇÃO**
@@ -697,22 +891,22 @@ risco_bh <- geobr::read_disaster_risk_area(
 )
 ```
 
-## **COMO LER O OBJETO ESPACIAL**
+## **DICIONÁRIO DAS COLUNAS — ÁREAS DE RISCO I**
 
 ```{r}
-#| label: estrutura-risco-explicada
+#| label: dicionario-colunas-risco-1
 
-leitura_objeto_sf |>
-  knitr::kable()
+colunas_risco_1 |>
+  tabela_slide(tamanho_fonte = "0.64em")
 ```
 
-## **DICIONÁRIO DAS COLUNAS** {.scrollable}
+## **DICIONÁRIO DAS COLUNAS — ÁREAS DE RISCO II**
 
 ```{r}
-#| label: dicionario-colunas-risco
+#| label: dicionario-colunas-risco-2
 
-colunas_risco |>
-  knitr::kable()
+colunas_risco_2 |>
+  tabela_slide(tamanho_fonte = "0.64em")
 ```
 
 # **CAPÍTULO 6: MAPAS DE ÁREAS DE RISCO**
@@ -721,8 +915,8 @@ colunas_risco |>
 
 ```{r}
 #| label: mapa-risco-sudeste
-#| fig-width: 11.5
-#| fig-height: 5.35
+#| fig-width: 11.3
+#| fig-height: 4.75
 
 ggplot2::ggplot() +
   ggplot2::geom_sf(
@@ -756,7 +950,7 @@ ggplot2::ggplot() +
 
 ::: {.column width="31%"}
 
-::: metric-orange
+::: box-orange
 **Áreas carregadas**
 
 `r formatar_numero(n_risco_sudeste)`
@@ -769,7 +963,7 @@ ggplot2::ggplot() +
 
 ::: {.column width="31%"}
 
-::: metric-purple
+::: box-purple
 **Estados no recorte**
 
 `r formatar_numero(n_estados_sudeste)`
@@ -782,10 +976,10 @@ ggplot2::ggplot() +
 
 ::: {.column width="32%"}
 
-::: metric-blue
-**Ano da base**
+::: box-blue
+**Recorte usado**
 
-2010
+Região Sudeste
 :::
 
 :::
@@ -796,8 +990,8 @@ ggplot2::ggplot() +
 
 ```{r}
 #| label: mapa-risco-bh
-#| fig-width: 11.5
-#| fig-height: 5.35
+#| fig-width: 11.3
+#| fig-height: 4.85
 
 ggplot2::ggplot() +
   ggplot2::geom_sf(
@@ -866,7 +1060,7 @@ A sobreposição com municípios e estados ajuda a conectar a geometria do risco
 #| label: tabela-sobreposicao
 
 sobreposicoes |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.64em")
 ```
 
 ## **POR QUE NÃO USAR MAPAS COROPLÉTICOS?**
@@ -891,7 +1085,7 @@ Por isso, os mapas usam:
 #| label: tabela-comparacao-final
 
 comparacao_funcoes |>
-  knitr::kable()
+  tabela_slide(tamanho_fonte = "0.66em")
 ```
 
 ## **SÍNTESE INTERPRETATIVA**
@@ -935,7 +1129,7 @@ As duas funções mostram que o `geobr` não serve apenas para desenhar mapas.
 Ele permite acessar bases oficiais que traduzem diferentes formas de organização do território brasileiro: proteção ambiental, vulnerabilidade, prevenção e planejamento.
 :::
 
-::: panel-dark
+::: box-blue
 **Mensagem central**
 
 Com poucas linhas de R, é possível baixar, examinar e visualizar geometrias oficiais brasileiras em diferentes escalas territoriais.

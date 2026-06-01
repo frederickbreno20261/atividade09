@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.8.21">
 
   <meta name="author" content="Frederick (fchame@id.uff.br)   Breno (brenoborges@id.uff.br)">
-  <title>PRÁTICA ESTATÍSTICA II</title>
+  <title>Pacote geobr Unidades de Conservação e Áreas de Risco</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +28,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link rel="stylesheet" href="custom.css">
@@ -128,7 +194,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="Capa 2.jpg" data-background-size="cover" class="quarto-title-block center">
-  <h1 class="title"><strong>PRÁTICA ESTATÍSTICA II</strong></h1>
+  <h1 class="title"><span class="deck-kicker">Pacote geobr</span><br><span class="deck-title">Unidades de Conservação e Áreas de Risco</span></h1>
   <p class="subtitle"><strong>ATIVIDADE AVALIATIVA 9</strong></p>
 
 <div class="quarto-title-authors">
@@ -149,364 +215,158 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 <h1><strong>CAPÍTULO 1: INTRODUÇÃO</strong></h1>
 
 </section>
-<section id="identificação-da-atividade" class="slide level2">
-<h2><strong>IDENTIFICAÇÃO DA ATIVIDADE</strong></h2>
+<section id="contexto-da-atividade" class="slide level2">
+<h2><strong>CONTEXTO DA ATIVIDADE</strong></h2>
 <div class="section-label">
-<p>Pacote geobr</p>
+<p>Bases geográficas oficiais no R</p>
 </div>
-<div class="box-purple">
-<p><strong>TEMA</strong></p>
-<p>Explorando a nova versão do pacote <code>geobr</code> por meio de duas funções sorteadas:</p>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="box-blue">
+<p>O pacote <code>geobr</code> permite acessar bases espaciais oficiais brasileiras diretamente no R.</p>
+<p>Nesta apresentação, o foco será compreender como duas funções do pacote retornam geometrias espaciais, como essas geometrias podem ser interpretadas e como podem ser visualizadas por meio de mapas simples.</p>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:38%;">
+<div class="panel-dark">
+<p><strong>FUNÇÕES SORTEADAS</strong></p>
 <ul>
 <li><code>read_conservation_units()</code></li>
 <li><code>read_disaster_risk_area()</code></li>
 </ul>
+<p><strong>Foco:</strong> visualizar, localizar e interpretar geometrias espaciais.</p>
 </div>
-<p><strong>Observação:</strong> no enunciado da atividade, a primeira função aparece como <code>read_conservational_units()</code>, mas o nome correto no pacote é <code>read_conservation_units()</code>.</p>
+</div></div>
 </section>
-<section id="o-que-é-o-geobr" class="slide level2">
-<h2><strong>O QUE É O geobr?</strong></h2>
-<div class="box-blue">
-<ul>
-<li>O <code>geobr</code> permite baixar bases espaciais oficiais do Brasil diretamente no R.</li>
-<li>As bases são retornadas, por padrão, como objetos <code>sf</code>.</li>
-<li>O pacote organiza geometrias territoriais brasileiras em diferentes escalas.</li>
-<li>A proposta da atividade é visualizar, localizar e interpretar geometrias espaciais.</li>
-</ul>
-</div>
-</section>
-<section id="objetivo-da-apresentação" class="slide level2">
-<h2><strong>OBJETIVO DA APRESENTAÇÃO</strong></h2>
-<div class="section-label">
-<p>Meta da dupla</p>
-</div>
+<section id="problema-geográfico" class="slide level2">
+<h2><strong>PROBLEMA GEOGRÁFICO</strong></h2>
 <div class="box-green">
-<p>Apresentar duas funções do <code>geobr</code>, investigando:</p>
-<ul>
-<li>o que cada base representa;</li>
-<li>quais são seus principais argumentos;</li>
-<li>quais anos ou datas estão disponíveis;</li>
-<li>que tipo de geometria é retornado;</li>
-<li>quais informações aparecem nas colunas;</li>
-<li>como as geometrias podem ser visualizadas em mapas simples.</li>
-</ul>
+<p>As duas funções descrevem aspectos diferentes do território brasileiro.</p>
+<p>A primeira mostra o território como espaço de <strong>proteção ambiental</strong>.</p>
+<p>A segunda mostra o território como espaço de <strong>vulnerabilidade, prevenção e gestão de riscos</strong>.</p>
 </div>
-</section></section>
-<section>
-<section id="capítulo-2-função-1" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 2: FUNÇÃO 1</strong></h1>
-
-</section>
-<section id="read_conservation_units" class="slide level2">
-<h2><strong>read_conservation_units()</strong></h2>
-<div class="section-label">
-<p>Unidades de conservação</p>
-</div>
-<div class="box-purple">
-<p><strong>O QUE A BASE REPRESENTA</strong></p>
-<p>A função <code>read_conservation_units()</code> baixa os polígonos das unidades de conservação existentes no território brasileiro.</p>
-<p>Essas unidades correspondem a áreas protegidas, criadas para conservação ambiental, preservação de ecossistemas, proteção da biodiversidade e ordenamento do uso do território.</p>
-</div>
-</section>
-<section id="características-da-base" class="slide level2">
-<h2><strong>CARACTERÍSTICAS DA BASE</strong></h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="finalidade-da-geometria">Finalidade da geometria</h3>
-<ul>
-<li>Delimitar oficialmente áreas protegidas.</li>
-<li>Localizar unidades de conservação no território nacional.</li>
-<li>Permitir sobreposição com estados, biomas e municípios.</li>
-<li>Apoiar diagnósticos ambientais e territoriais.</li>
-</ul>
-</div><div class="column" style="width:10%;">
+<div class="column" style="width:49%;">
+<div class="mini-card">
+<p><strong>Unidades de conservação</strong></p>
+<p>Áreas oficialmente delimitadas para proteger biodiversidade, ecossistemas e recursos naturais.</p>
+</div>
+</div><div class="column" style="width:2%;">
 
-</div><div class="column" style="width:40%;">
-<h3 id="informação-institucional">Informação institucional</h3>
-<ul>
-<li><strong>Órgão-fonte:</strong> Ministério do Meio Ambiente.</li>
-<li><strong>Nível territorial:</strong> Brasil.</li>
-<li><strong>Geometria principal:</strong> polígonos.</li>
-<li><strong>Datas disponíveis:</strong> 202402 e 202503.</li>
-</ul>
+</div><div class="column" style="width:49%;">
+<div class="mini-card">
+<p><strong>Áreas de risco</strong></p>
+<p>Polígonos associados a riscos geodinâmicos e hidrometeorológicos, como deslizamentos e inundações.</p>
+</div>
 </div></div>
 </section>
-<section id="possíveis-aplicações" class="slide level2">
-<h2><strong>POSSÍVEIS APLICAÇÕES</strong></h2>
-<div class="box-blue">
-<ul>
-<li>Visualizar a distribuição espacial de áreas protegidas.</li>
-<li>Verificar em quais biomas há maior concentração de unidades de conservação.</li>
-<li>Sobrepor unidades de conservação com estados ou municípios.</li>
-<li>Apoiar estudos de planejamento ambiental.</li>
-<li>Produzir mapas exploratórios sem escala quantitativa.</li>
-</ul>
+<section id="roteiro-da-apresentação" class="slide level2">
+<h2><strong>ROTEIRO DA APRESENTAÇÃO</strong></h2>
+<div class="columns">
+<div class="column" style="width:32%;">
+<div class="step-card">
+<p><strong>1. Introdução</strong></p>
+<p>O que cada base representa e por que ela é relevante.</p>
 </div>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:32%;">
+<div class="step-card">
+<p><strong>2. Exploração</strong></p>
+<p>Argumentos, estrutura espacial e dicionário das colunas.</p>
+</div>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:32%;">
+<div class="step-card">
+<p><strong>3. Mapas</strong></p>
+<p>Visualização regional, sobreposição de camadas e interpretação.</p>
+</div>
+</div></div>
+</section></section>
+<section>
+<section id="capítulo-2-visão-geral-das-funções" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 2: VISÃO GERAL DAS FUNÇÕES</strong></h1>
+
 </section>
-<section id="principais-argumentos" class="slide level2">
-<h2><strong>PRINCIPAIS ARGUMENTOS</strong></h2>
+<section id="duas-funções-duas-leituras-do-território" class="slide level2">
+<h2><strong>DUAS FUNÇÕES, DUAS LEITURAS DO TERRITÓRIO</strong></h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<section id="read_conservation_units" class="box-purple">
+<h3><code>read_conservation_units()</code></h3>
+<p><strong>Base representada:</strong> unidades de conservação brasileiras.</p>
+<p><strong>Objetivo da geometria:</strong> delimitar áreas protegidas.</p>
+<p><strong>Órgão responsável:</strong> Ministério do Meio Ambiente.</p>
+<p><strong>Nível territorial:</strong> nacional, com leitura regional nesta apresentação.</p>
+<p><strong>Aplicações:</strong> conservação ambiental, planejamento territorial, sobreposição com biomas e estados.</p>
+</section>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:49%;">
+<section id="read_disaster_risk_area" class="box-orange">
+<h3><code>read_disaster_risk_area()</code></h3>
+<p><strong>Base representada:</strong> áreas de risco de desastre.</p>
+<p><strong>Objetivo da geometria:</strong> localizar áreas suscetíveis a deslizamentos e inundações.</p>
+<p><strong>Órgãos responsáveis:</strong> IBGE e CEMADEN.</p>
+<p><strong>Nível territorial:</strong> Brasil, estado ou município.</p>
+<p><strong>Aplicações:</strong> defesa civil, gestão urbana, prevenção de desastres e planejamento territorial.</p>
+</section>
+</div></div>
+</section>
+<section id="resumo-técnico-das-bases" class="slide level2">
+<h2><strong>RESUMO TÉCNICO DAS BASES</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 52%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">argumento</th>
-<th style="text-align: left;">interpretação</th>
+<th style="text-align: left;">CRITÉRIO</th>
+<th style="text-align: left;">read_conservation_units()</th>
+<th style="text-align: left;">read_disaster_risk_area()</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>date</code></td>
-<td style="text-align: left;">Data da base no formato AAAAMM. Exemplo usado: 202503.</td>
+<td style="text-align: left;">Tema territorial</td>
+<td style="text-align: left;">Proteção ambiental</td>
+<td style="text-align: left;">Vulnerabilidade e prevenção de desastres</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>simplified</code></td>
-<td style="text-align: left;">Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>output</code></td>
-<td style="text-align: left;">Tipo de saída. Por padrão, retorna objeto sf.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>showProgress</code></td>
-<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>cache</code></td>
-<td style="text-align: left;">Permite reaproveitar arquivos baixados na sessão.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>verbose</code></td>
-<td style="text-align: left;">Controla mensagens informativas durante a execução.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="estrutura-do-objeto-espacial" class="slide level2">
-<h2><strong>ESTRUTURA DO OBJETO ESPACIAL</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 27%">
-<col style="width: 6%">
-<col style="width: 19%">
-<col style="width: 19%">
-<col style="width: 4%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">base</th>
-<th style="text-align: left;">classe</th>
-<th style="text-align: left;">linhas</th>
-<th style="text-align: right;">colunas_sem_geometria</th>
-<th style="text-align: left;">tipo_de_geometria</th>
-<th style="text-align: right;">epsg</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+<td style="text-align: left;">Base representada</td>
 <td style="text-align: left;">Unidades de conservação</td>
-<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
-<td style="text-align: left;">3.001</td>
-<td style="text-align: right;">33</td>
-<td style="text-align: left;">POLYGON, MULTIPOLYGON</td>
-<td style="text-align: right;">4674</td>
+<td style="text-align: left;">Áreas de risco de desastre</td>
 </tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="colunas-da-base" class="slide level2 scrollable">
-<h2><strong>COLUNAS DA BASE</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 11%">
-<col style="width: 10%">
-<col style="width: 77%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">coluna</th>
-<th style="text-align: left;">tipo</th>
-<th style="text-align: left;">exemplos</th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td style="text-align: left;">uc_id</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">2; 4</td>
+<td style="text-align: left;">Fonte oficial</td>
+<td style="text-align: left;">Ministério do Meio Ambiente</td>
+<td style="text-align: left;">IBGE e CEMADEN</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">cd_cnuc</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">0000.00.0002; 0000.00.0004</td>
+<td style="text-align: left;">Recorte usado nos mapas</td>
+<td style="text-align: left;">Região Norte</td>
+<td style="text-align: left;">Região Sudeste e município de Belo Horizonte</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">wdpa_pid</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">31755; 19752</td>
+<td style="text-align: left;">Tipo de geometria</td>
+<td style="text-align: left;">Polígonos ou multipolígonos</td>
+<td style="text-align: left;">Polígonos ou multipolígonos</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">nome_uc</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">ÁREA DE PROTEÇÃO AMBIENTAL CAVERNAS DO PERUAÇU; ÁREA DE PROTEÇÃO AM…</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">cria_ano</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">28-09-1989; 07-11-1983</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">cria_ato</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Decreto 98182 de 26-09-1989; Decreto 88940 de 07-11-1983</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">outro_ato</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Sem informação; Decreto 91892 de 06-11-1995 Ampliação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">pl_manejo</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Sem informação; Sim</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">co_gestor</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Sim; Sem informação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">quali_pol</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Polígono corresponde ao memorial descritivo; Polígono é uma estimat…</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ppgr</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Mosaico Sertão Veredas - Peruaçu; Projeto GEF Mar - Áreas Marinhas …</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ha_total</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">143353.29; 82679.26</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ha_ato</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">143866; 0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">esfera</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Federal; Estadual</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">uf</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">MINAS GERAIS; DISTRITO FEDERAL</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">municipio</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">BONITO DE MINAS (MG), CÔNEGO MARINHO (MG), ITACARAMBI (MG), JANUÁRI…</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">org_gestor</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">INSTITUTO CHICO MENDES DE CONSERVAÇÃO DA BIODIVERSIDADE; SECRETARIA…</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">grupo</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Uso Sustentável; Proteção Integral</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">categoria</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Área de Proteção Ambiental; Monumento Natural</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">cat_iucn</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Category V; Category III</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">amazonia</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">575338.56; 271465.03</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">caatinga</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">26660.87; 33419.89</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">cerrado</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">116692.42; 82679.26</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">matlantica</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">34957.2; 437517.1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">pampa</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">316669.19</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">pantanal</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">marinho</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">119934.73; 798.63</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">situacao</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Ativo</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">limite</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">uc</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">rbiosfera</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Caatinga,Mata Atlântica; Cerrado</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">nome_abrev</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">APA CAVERNAS DO PERUAÇU; APA DA BACIA DO RIO SÃO BARTOLOMEU</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">year</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">2025</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">date</td>
-<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">Ano/data usada</td>
 <td style="text-align: left;">202503</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uso principal</td>
+<td style="text-align: left;">Localizar áreas protegidas</td>
+<td style="text-align: left;">Localizar áreas vulneráveis a deslizamentos e inundações</td>
 </tr>
 </tbody>
 </table>
@@ -514,251 +374,274 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 </section></section>
 <section>
-<section id="capítulo-3-mapas-unidades-de-conservação" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 3: MAPAS — UNIDADES DE CONSERVAÇÃO</strong></h1>
+<section id="capítulo-3-exploração-da-função-1" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 3: EXPLORAÇÃO DA FUNÇÃO 1</strong></h1>
 
 </section>
-<section id="mapa-1-unidades-de-conservação-no-brasil" class="slide level2">
-<h2><strong>MAPA 1: UNIDADES DE CONSERVAÇÃO NO BRASIL</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/mapa-uc-brasil-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="mapa-2-sobreposição-com-biomas" class="slide level2">
-<h2><strong>MAPA 2: SOBREPOSIÇÃO COM BIOMAS</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="index_files/figure-revealjs/mapa-uc-biomas-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="capítulo-4-função-2" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 4: FUNÇÃO 2</strong></h1>
-
-</section>
-<section id="read_disaster_risk_area" class="slide level2">
-<h2><strong>read_disaster_risk_area()</strong></h2>
+<section id="unidades-de-conservação" class="slide level2">
+<h2><strong>UNIDADES DE CONSERVAÇÃO</strong></h2>
 <div class="section-label">
-<p>Áreas de risco de desastre</p>
+<p>Função 1</p>
 </div>
 <div class="box-purple">
-<p><strong>O QUE A BASE REPRESENTA</strong></p>
-<p>A função <code>read_disaster_risk_area()</code> baixa áreas de risco de desastre no Brasil.</p>
-<p>A base se concentra em riscos geodinâmicos e hidrometeorológicos, especialmente áreas sujeitas a deslizamentos e inundações.</p>
+<p>A função <code>read_conservation_units()</code> retorna os polígonos das unidades de conservação presentes no território brasileiro.</p>
+<p>Para tornar a visualização mais interpretável, a apresentação usa um recorte regional: <strong>Região Norte</strong>. Esse recorte reduz a complexidade visual do mapa e favorece a leitura espacial.</p>
 </div>
 </section>
-<section id="características-da-base-1" class="slide level2">
-<h2><strong>CARACTERÍSTICAS DA BASE</strong></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="finalidade-da-geometria-1">Finalidade da geometria</h3>
-<ul>
-<li>Delimitar polígonos de áreas expostas a risco.</li>
-<li>Identificar áreas vulneráveis a desastres.</li>
-<li>Apoiar defesa civil, planejamento urbano e prevenção.</li>
-<li>Permitir análise espacial por município ou estado.</li>
-</ul>
-</div><div class="column" style="width:10%;">
-
-</div><div class="column" style="width:40%;">
-<h3 id="informação-institucional-1">Informação institucional</h3>
-<ul>
-<li><strong>Órgãos-fonte:</strong> IBGE e CEMADEN.</li>
-<li><strong>Nível territorial:</strong> Brasil, estados ou municípios.</li>
-<li><strong>Geometria principal:</strong> polígonos de risco.</li>
-<li><strong>Ano disponível:</strong> 2010.</li>
-</ul>
-</div></div>
-</section>
-<section id="possíveis-aplicações-1" class="slide level2">
-<h2><strong>POSSÍVEIS APLICAÇÕES</strong></h2>
-<div class="box-orange">
-<ul>
-<li>Localizar áreas expostas a deslizamentos e inundações.</li>
-<li>Sobrepor áreas de risco com limites municipais.</li>
-<li>Apoiar planos municipais de redução de risco.</li>
-<li>Identificar áreas prioritárias para monitoramento.</li>
-<li>Produzir mapas simples de localização e interpretação espacial.</li>
-</ul>
-</div>
-</section>
-<section id="principais-argumentos-1" class="slide level2">
-<h2><strong>PRINCIPAIS ARGUMENTOS</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 84%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">argumento</th>
-<th style="text-align: left;">interpretação</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>year</code></td>
-<td style="text-align: left;">Ano da base. Atualmente, a base está disponível para 2010.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>code_muni</code></td>
-<td style="text-align: left;">Código de município, sigla de estado ou ‘all’. Exemplo usado: ‘MG’ e 3106200.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>simplified</code></td>
-<td style="text-align: left;">Se TRUE, retorna geometria simplificada. Se FALSE, retorna geometria original.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>output</code></td>
-<td style="text-align: left;">Tipo de saída. Por padrão, retorna objeto sf.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>showProgress</code></td>
-<td style="text-align: left;">Controla a exibição da barra de progresso.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>cache</code></td>
-<td style="text-align: left;">Permite reaproveitar arquivos baixados na sessão.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>verbose</code></td>
-<td style="text-align: left;">Controla mensagens informativas durante a execução.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="estrutura-do-objeto-espacial-1" class="slide level2">
-<h2><strong>ESTRUTURA DO OBJETO ESPACIAL</strong></h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 23%">
-<col style="width: 5%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 3%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">base</th>
-<th style="text-align: left;">classe</th>
-<th style="text-align: left;">linhas</th>
-<th style="text-align: right;">colunas_sem_geometria</th>
-<th style="text-align: left;">tipo_de_geometria</th>
-<th style="text-align: right;">epsg</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Áreas de risco de desastre — MG</td>
-<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
-<td style="text-align: left;">1.632</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">POLYGON, MULTIPOLYGON</td>
-<td style="text-align: right;">4674</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Áreas de risco de desastre — Belo Horizonte</td>
-<td style="text-align: left;">sf / tbl_df / tbl / data.frame</td>
-<td style="text-align: left;">216</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">POLYGON</td>
-<td style="text-align: right;">4674</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
-<section id="colunas-da-base-1" class="slide level2 scrollable">
-<h2><strong>COLUNAS DA BASE</strong></h2>
+<section id="argumentos-da-função" class="slide level2">
+<h2><strong>ARGUMENTOS DA FUNÇÃO</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
 <col style="width: 13%">
-<col style="width: 10%">
-<col style="width: 75%">
+<col style="width: 86%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">coluna</th>
-<th style="text-align: left;">tipo</th>
-<th style="text-align: left;">exemplos</th>
+<th style="text-align: left;">ARGUMENTO</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">code_muni</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">3100609; 3101102</td>
+<td style="text-align: left;"><code>date</code></td>
+<td style="text-align: left;">Define a data da base no formato AAAAMM. Nesta apresentação foi usada a data 202503.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">name_muni</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Agua Boa; Aimores</td>
+<td style="text-align: left;"><code>simplified</code></td>
+<td style="text-align: left;">Controla se a geometria será simplificada. Para visualização em slides, TRUE é suficiente.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">geo_bater</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">31006090004; 31006090003</td>
+<td style="text-align: left;"><code>output</code></td>
+<td style="text-align: left;">Define o formato de saída. O valor ‘sf’ retorna um objeto espacial diretamente manipulável no R.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">origem</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">face; setor</td>
+<td style="text-align: left;"><code>showProgress</code></td>
+<td style="text-align: left;">Controla se a barra de progresso será exibida durante o download.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">acuracia</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">otima; boa</td>
+<td style="text-align: left;"><code>cache</code></td>
+<td style="text-align: left;">Permite reaproveitar localmente dados já baixados.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">obs</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Sem associacao de dados do Censo Demografico 2010; Aglomerado Subno…</td>
+<td style="text-align: left;"><code>verbose</code></td>
+<td style="text-align: left;">Controla a impressão de mensagens informativas durante a execução.</td>
 </tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="exemplo-de-uso-da-função" class="slide level2">
+<h2><strong>EXEMPLO DE USO DA FUNÇÃO</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>uc <span class="ot">&lt;-</span> geobr<span class="sc">::</span><span class="fu">read_conservation_units</span>(</span>
+<span id="cb1-2"><a href=""></a>  <span class="at">date =</span> <span class="dv">202503</span>,</span>
+<span id="cb1-3"><a href=""></a>  <span class="at">simplified =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-4"><a href=""></a>  <span class="at">output =</span> <span class="st">"sf"</span>,</span>
+<span id="cb1-5"><a href=""></a>  <span class="at">showProgress =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-6"><a href=""></a>  <span class="at">cache =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7"><a href=""></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-8"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="como-ler-o-objeto-espacial" class="slide level2">
+<h2><strong>COMO LER O OBJETO ESPACIAL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ELEMENTO</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;">code_state</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">31</td>
+<td style="text-align: left;">Objeto sf</td>
+<td style="text-align: left;">Formato espacial usado no R para armazenar tabela de atributos e geometria no mesmo objeto.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">name_state</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Minas Gerais</td>
+<td style="text-align: left;">Linha</td>
+<td style="text-align: left;">Cada linha representa uma feição espacial. Nesta apresentação, uma unidade de conservação ou uma área de risco.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">abbrev_state</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">MG</td>
+<td style="text-align: left;">Coluna comum</td>
+<td style="text-align: left;">Armazena atributos descritivos, como nome, código, ano, categoria ou município.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">code_region</td>
-<td style="text-align: left;">numeric</td>
-<td style="text-align: left;">3</td>
+<td style="text-align: left;">Coluna geometry</td>
+<td style="text-align: left;">Armazena a forma espacial de cada feição, geralmente como POLYGON ou MULTIPOLYGON.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">name_region</td>
-<td style="text-align: left;">character</td>
-<td style="text-align: left;">Sudeste</td>
+<td style="text-align: left;">CRS</td>
+<td style="text-align: left;">Sistema de referência de coordenadas que informa como as geometrias estão posicionadas na superfície terrestre.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geometria simplificada</td>
+<td style="text-align: left;">Versão com menor complexidade geométrica, útil para mapas de apresentação e processamento mais rápido.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas" class="slide level2 scrollable">
+<h2><strong>DICIONÁRIO DAS COLUNAS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 93%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">COLUNA</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">uc_id</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cd_cnuc</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wdpa_pid</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">nome_uc</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cria_ano</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cria_ato</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">outro_ato</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pl_manejo</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">co_gestor</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quali_pol</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ppgr</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ha_total</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ha_ato</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">esfera</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">uf</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">municipio</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">org_gestor</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">grupo</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">categoria</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cat_iucn</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">amazonia</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">caatinga</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cerrado</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">matlantica</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pampa</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pantanal</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">marinho</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">situacao</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">limite</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rbiosfera</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">nome_abrev</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Ano de referência da informação espacial.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: left;">Data de referência da base no formato AAAAMM.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geometry</td>
+<td style="text-align: left;">Coluna especial do objeto sf que armazena a geometria espacial.</td>
 </tr>
 </tbody>
 </table>
@@ -766,21 +649,297 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 </section></section>
 <section>
-<section id="capítulo-5-mapas-áreas-de-risco" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 5: MAPAS — ÁREAS DE RISCO</strong></h1>
+<section id="capítulo-4-mapas-de-unidades-de-conservação" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 4: MAPAS DE UNIDADES DE CONSERVAÇÃO</strong></h1>
 
 </section>
-<section id="mapa-3-áreas-de-risco-em-minas-gerais" class="slide level2">
-<h2><strong>MAPA 3: ÁREAS DE RISCO EM MINAS GERAIS</strong></h2>
+<section id="mapa-1-unidades-de-conservação-na-região-norte" class="slide level2">
+<h2><strong>MAPA 1: UNIDADES DE CONSERVAÇÃO NA REGIÃO NORTE</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="index_files/figure-revealjs/mapa-risco-mg-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/mapa-uc-norte-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
+<div class="columns">
+<div class="column" style="width:31%;">
+<div class="metric-green">
+<p><strong>Unidades carregadas</strong></p>
+<p>361</p>
+</div>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column" style="width:31%;">
+<div class="metric-purple">
+<p><strong>Estados no recorte</strong></p>
+<p>7</p>
+</div>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column" style="width:32%;">
+<div class="metric-blue">
+<p><strong>Data da base</strong></p>
+<p>202503</p>
+</div>
+</div></div>
+</section>
+<section id="mapa-2-unidades-de-conservação-e-biomas" class="slide level2">
+<h2><strong>MAPA 2: UNIDADES DE CONSERVAÇÃO E BIOMAS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-uc-biomas-norte-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="box-blue">
+<p>A sobreposição com biomas torna a leitura menos abstrata: as unidades de conservação deixam de aparecer apenas como polígonos isolados e passam a ser interpretadas dentro de grandes formações ambientais.</p>
+</div>
+</section></section>
+<section>
+<section id="capítulo-5-exploração-da-função-2" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 5: EXPLORAÇÃO DA FUNÇÃO 2</strong></h1>
+
+</section>
+<section id="áreas-de-risco-de-desastre" class="slide level2">
+<h2><strong>ÁREAS DE RISCO DE DESASTRE</strong></h2>
+<div class="section-label">
+<p>Função 2</p>
+</div>
+<div class="box-orange">
+<p>A função <code>read_disaster_risk_area()</code> retorna polígonos de áreas de risco de desastre.</p>
+<p>Nesta apresentação, a leitura principal será feita para a <strong>Região Sudeste</strong>, usando a combinação dos estados ES, MG, RJ e SP. Em seguida, será mostrado um recorte municipal de Belo Horizonte.</p>
+</div>
+</section>
+<section id="argumentos-da-função-1" class="slide level2">
+<h2><strong>ARGUMENTOS DA FUNÇÃO</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ARGUMENTO</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>year</code></td>
+<td style="text-align: left;">Define o ano da base. A base de áreas de risco está disponível para 2010.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>code_muni</code></td>
+<td style="text-align: left;">Permite baixar o Brasil inteiro, uma unidade da federação ou um município específico.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>simplified</code></td>
+<td style="text-align: left;">Controla se a geometria será simplificada.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>output</code></td>
+<td style="text-align: left;">Define o formato de saída. O valor ‘sf’ retorna um objeto espacial.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>showProgress</code></td>
+<td style="text-align: left;">Controla se a barra de progresso será exibida.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>cache</code></td>
+<td style="text-align: left;">Permite reaproveitar dados baixados anteriormente.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>verbose</code></td>
+<td style="text-align: left;">Controla a impressão de mensagens informativas.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="exemplo-de-uso-da-função-1" class="slide level2">
+<h2><strong>EXEMPLO DE USO DA FUNÇÃO</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>risco_mg <span class="ot">&lt;-</span> geobr<span class="sc">::</span><span class="fu">read_disaster_risk_area</span>(</span>
+<span id="cb2-2"><a href=""></a>  <span class="at">year =</span> <span class="dv">2010</span>,</span>
+<span id="cb2-3"><a href=""></a>  <span class="at">code_muni =</span> <span class="st">"MG"</span>,</span>
+<span id="cb2-4"><a href=""></a>  <span class="at">simplified =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-5"><a href=""></a>  <span class="at">output =</span> <span class="st">"sf"</span>,</span>
+<span id="cb2-6"><a href=""></a>  <span class="at">showProgress =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-7"><a href=""></a>  <span class="at">cache =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-8"><a href=""></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-9"><a href=""></a>)</span>
+<span id="cb2-10"><a href=""></a></span>
+<span id="cb2-11"><a href=""></a>risco_bh <span class="ot">&lt;-</span> geobr<span class="sc">::</span><span class="fu">read_disaster_risk_area</span>(</span>
+<span id="cb2-12"><a href=""></a>  <span class="at">year =</span> <span class="dv">2010</span>,</span>
+<span id="cb2-13"><a href=""></a>  <span class="at">code_muni =</span> <span class="dv">3106200</span>,</span>
+<span id="cb2-14"><a href=""></a>  <span class="at">simplified =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-15"><a href=""></a>  <span class="at">output =</span> <span class="st">"sf"</span>,</span>
+<span id="cb2-16"><a href=""></a>  <span class="at">showProgress =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-17"><a href=""></a>  <span class="at">cache =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-18"><a href=""></a>  <span class="at">verbose =</span> <span class="cn">FALSE</span></span>
+<span id="cb2-19"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="como-ler-o-objeto-espacial-1" class="slide level2">
+<h2><strong>COMO LER O OBJETO ESPACIAL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ELEMENTO</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Objeto sf</td>
+<td style="text-align: left;">Formato espacial usado no R para armazenar tabela de atributos e geometria no mesmo objeto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Linha</td>
+<td style="text-align: left;">Cada linha representa uma feição espacial. Nesta apresentação, uma unidade de conservação ou uma área de risco.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Coluna comum</td>
+<td style="text-align: left;">Armazena atributos descritivos, como nome, código, ano, categoria ou município.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Coluna geometry</td>
+<td style="text-align: left;">Armazena a forma espacial de cada feição, geralmente como POLYGON ou MULTIPOLYGON.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CRS</td>
+<td style="text-align: left;">Sistema de referência de coordenadas que informa como as geometrias estão posicionadas na superfície terrestre.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Geometria simplificada</td>
+<td style="text-align: left;">Versão com menor complexidade geométrica, útil para mapas de apresentação e processamento mais rápido.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="dicionário-das-colunas-1" class="slide level2 scrollable">
+<h2><strong>DICIONÁRIO DAS COLUNAS</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 92%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">COLUNA</th>
+<th style="text-align: left;">DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">code_muni</td>
+<td style="text-align: left;">Código IBGE do município associado à área de risco.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name_muni</td>
+<td style="text-align: left;">Nome do município associado à área de risco.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">geo_bater</td>
+<td style="text-align: left;">Código único do polígono de área de risco, chamado BATER na documentação da base.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">origem</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acuracia</td>
+<td style="text-align: left;">Indicador do grau de sobreposição do polígono de risco com setores censitários e faces de quadra.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">obs</td>
+<td style="text-align: left;">Coluna auxiliar presente na base retornada pelo geobr. Deve ser interpretada em conjunto com a documentação da função e com a inspeção direta do objeto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">code_state</td>
+<td style="text-align: left;">Código numérico da unidade da federação.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name_state</td>
+<td style="text-align: left;">Nome da unidade da federação.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">abbrev_state</td>
+<td style="text-align: left;">Sigla da unidade da federação.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">code_region</td>
+<td style="text-align: left;">Código da grande região brasileira.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">name_region</td>
+<td style="text-align: left;">Nome da grande região brasileira.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geometry</td>
+<td style="text-align: left;">Coluna especial do objeto sf que armazena a geometria espacial.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
+<section>
+<section id="capítulo-6-mapas-de-áreas-de-risco" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 6: MAPAS DE ÁREAS DE RISCO</strong></h1>
+
+</section>
+<section id="mapa-3-áreas-de-risco-na-região-sudeste" class="slide level2">
+<h2><strong>MAPA 3: ÁREAS DE RISCO NA REGIÃO SUDESTE</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="index_files/figure-revealjs/mapa-risco-sudeste-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:31%;">
+<div class="metric-orange">
+<p><strong>Áreas carregadas</strong></p>
+<p>4.517</p>
+</div>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column" style="width:31%;">
+<div class="metric-purple">
+<p><strong>Estados no recorte</strong></p>
+<p>4</p>
+</div>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column" style="width:32%;">
+<div class="metric-blue">
+<p><strong>Ano da base</strong></p>
+<p>2010</p>
+</div>
+</div></div>
 </section>
 <section id="mapa-4-recorte-municipal-belo-horizonte" class="slide level2">
 <h2><strong>MAPA 4: RECORTE MUNICIPAL — BELO HORIZONTE</strong></h2>
@@ -793,113 +952,188 @@ Frederick (<a href="mailto:fchame@id.uff.br" class="email">fchame@id.uff.br</a>)
 </div>
 </div>
 </div>
+<div class="box-orange">
+<p>O recorte municipal aproxima a leitura espacial do planejamento urbano. Em vez de observar apenas uma distribuição regional, visualizamos onde os polígonos de risco estão localizados dentro de um limite administrativo específico.</p>
+</div>
 </section></section>
 <section>
-<section id="capítulo-6-comparação-e-interpretação" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 6: COMPARAÇÃO E INTERPRETAÇÃO</strong></h1>
+<section id="capítulo-7-interpretação-espacial" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 7: INTERPRETAÇÃO ESPACIAL</strong></h1>
 
 </section>
-<section id="comparação-entre-as-funções" class="slide level2">
-<h2><strong>COMPARAÇÃO ENTRE AS FUNÇÕES</strong></h2>
+<section id="o-que-os-mapas-permitem-enxergar" class="slide level2">
+<h2><strong>O QUE OS MAPAS PERMITEM ENXERGAR?</strong></h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<section id="unidades-de-conservação-1" class="box-green">
+<h3>Unidades de conservação</h3>
+<p>Os mapas mostram áreas voltadas à proteção ambiental e permitem interpretar sua distribuição regional.</p>
+<p>A sobreposição com biomas ajuda a entender o contexto ecológico em que essas áreas estão inseridas.</p>
+</section>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:49%;">
+<section id="áreas-de-risco" class="box-orange">
+<h3>Áreas de risco</h3>
+<p>Os mapas mostram áreas vulneráveis a eventos como deslizamentos e inundações.</p>
+<p>A sobreposição com municípios e estados ajuda a conectar a geometria do risco ao planejamento territorial.</p>
+</section>
+</div></div>
+</section>
+<section id="sobreposição-de-camadas" class="slide level2">
+<h2><strong>SOBREPOSIÇÃO DE CAMADAS</strong></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 45%">
-<col style="width: 30%">
+<col style="width: 25%">
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 38%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">critério</th>
-<th style="text-align: left;"><code>read_conservation_units()</code></th>
-<th style="text-align: left;"><code>read_disaster_risk_area()</code></th>
+<th style="text-align: left;">MAPA</th>
+<th style="text-align: left;">CAMADA_PRINCIPAL</th>
+<th style="text-align: left;">CAMADA_DE_APOIO</th>
+<th style="text-align: left;">FINALIDADE</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Base representada</td>
+<td style="text-align: left;">Unidades de conservação na Região Norte</td>
 <td style="text-align: left;">Unidades de conservação</td>
-<td style="text-align: left;">Áreas de risco de desastre</td>
+<td style="text-align: left;">Estados da Região Norte</td>
+<td style="text-align: left;">Localizar áreas protegidas em escala regional.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Órgão responsável</td>
-<td style="text-align: left;">MMA</td>
-<td style="text-align: left;">IBGE e CEMADEN</td>
+<td style="text-align: left;">Unidades de conservação e biomas</td>
+<td style="text-align: left;">Unidades de conservação</td>
+<td style="text-align: left;">Biomas e estados da Região Norte</td>
+<td style="text-align: left;">Interpretar o contexto ambiental das áreas protegidas.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Escala territorial</td>
-<td style="text-align: left;">Brasil</td>
-<td style="text-align: left;">Brasil, estados ou municípios</td>
+<td style="text-align: left;">Áreas de risco no Sudeste</td>
+<td style="text-align: left;">Áreas de risco</td>
+<td style="text-align: left;">Municípios e estados do Sudeste</td>
+<td style="text-align: left;">Relacionar risco e divisão político-administrativa regional.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Filtro espacial direto</td>
-<td style="text-align: left;">Não possui argumento por estado ou município</td>
-<td style="text-align: left;">Possui argumento <code>code_muni</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Período disponível</td>
-<td style="text-align: left;">202402 e 202503</td>
-<td style="text-align: left;">2010</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Geometria</td>
-<td style="text-align: left;">Polígonos</td>
-<td style="text-align: left;">Polígonos</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Uso principal</td>
-<td style="text-align: left;">Conservação e planejamento ambiental</td>
-<td style="text-align: left;">Prevenção e gestão de riscos</td>
+<td style="text-align: left;">Áreas de risco em Belo Horizonte</td>
+<td style="text-align: left;">Áreas de risco</td>
+<td style="text-align: left;">Limite municipal de Belo Horizonte</td>
+<td style="text-align: left;">Aproximar a leitura para um recorte urbano.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="interpretação-espacial" class="slide level2">
-<h2><strong>INTERPRETAÇÃO ESPACIAL</strong></h2>
-<div class="box-blue">
-<p>A visualização das unidades de conservação mostra como áreas protegidas se distribuem pelo território nacional e como podem ser interpretadas em relação aos biomas brasileiros.</p>
-<p>Já a base de áreas de risco permite localizar polígonos associados à vulnerabilidade a deslizamentos e inundações, principalmente quando sobreposta aos limites municipais.</p>
-</div>
-</section>
-<section id="por-que-não-usamos-mapas-coropléticos" class="slide level2">
-<h2><strong>POR QUE NÃO USAMOS MAPAS COROPLÉTICOS?</strong></h2>
-<div class="box-orange">
-<p>A orientação da atividade é visualizar geometrias, não representar intensidade numérica.</p>
-<p>Por isso, os mapas foram construídos com:</p>
+<section id="por-que-não-usar-mapas-coropléticos" class="slide level2">
+<h2><strong>POR QUE NÃO USAR MAPAS COROPLÉTICOS?</strong></h2>
+<div class="box-purple">
+<p>A orientação da atividade é visualizar geometrias, não representar uma variável numérica.</p>
+<p>Por isso, os mapas usam:</p>
 <ul>
-<li>preenchimentos constantes;</li>
+<li>cores fixas;</li>
 <li>contornos simples;</li>
-<li>sobreposição de camadas;</li>
+<li>camadas sobrepostas;</li>
 <li>ausência de escala quantitativa;</li>
-<li>foco em localização e interpretação territorial.</li>
+<li>foco em localização e interpretação espacial.</li>
 </ul>
 </div>
 </section></section>
 <section>
-<section id="capítulo-7-conclusão" class="title-slide slide level1 center">
-<h1><strong>CAPÍTULO 7: CONCLUSÃO</strong></h1>
+<section id="capítulo-8-conclusão" class="title-slide slide level1 center">
+<h1><strong>CAPÍTULO 8: CONCLUSÃO</strong></h1>
 
 </section>
-<section id="síntese-dos-achados" class="slide level2">
-<h2><strong>SÍNTESE DOS ACHADOS</strong></h2>
-<div class="box-purple">
-<ul class="task-list">
-<li><label><input type="checkbox" checked="">A função <code>read_conservation_units()</code> retorna polígonos de unidades de conservação brasileiras.</label></li>
-<li><label><input type="checkbox" checked="">A função <code>read_disaster_risk_area()</code> retorna polígonos de áreas de risco associadas a deslizamentos e inundações.</label></li>
-<li><label><input type="checkbox" checked="">Ambas retornam objetos espaciais compatíveis com <code>sf</code>.</label></li>
-<li><label><input type="checkbox" checked="">As duas bases permitem mapas simples, organizados e interpretáveis.</label></li>
-<li><label><input type="checkbox" checked="">A sobreposição de camadas melhora a leitura territorial sem exigir mapas coropléticos.</label></li>
-</ul>
+<section id="comparação-final" class="slide level2">
+<h2><strong>COMPARAÇÃO FINAL</strong></h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">CRITÉRIO</th>
+<th style="text-align: left;">read_conservation_units()</th>
+<th style="text-align: left;">read_disaster_risk_area()</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Tema territorial</td>
+<td style="text-align: left;">Proteção ambiental</td>
+<td style="text-align: left;">Vulnerabilidade e prevenção de desastres</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Base representada</td>
+<td style="text-align: left;">Unidades de conservação</td>
+<td style="text-align: left;">Áreas de risco de desastre</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fonte oficial</td>
+<td style="text-align: left;">Ministério do Meio Ambiente</td>
+<td style="text-align: left;">IBGE e CEMADEN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Recorte usado nos mapas</td>
+<td style="text-align: left;">Região Norte</td>
+<td style="text-align: left;">Região Sudeste e município de Belo Horizonte</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tipo de geometria</td>
+<td style="text-align: left;">Polígonos ou multipolígonos</td>
+<td style="text-align: left;">Polígonos ou multipolígonos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ano/data usada</td>
+<td style="text-align: left;">202503</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uso principal</td>
+<td style="text-align: left;">Localizar áreas protegidas</td>
+<td style="text-align: left;">Localizar áreas vulneráveis a deslizamentos e inundações</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
-<section id="contribuição-da-atividade" class="slide level2">
-<h2><strong>CONTRIBUIÇÃO DA ATIVIDADE</strong></h2>
+<section id="síntese-interpretativa" class="slide level2">
+<h2><strong>SÍNTESE INTERPRETATIVA</strong></h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<section id="read_conservation_units-1" class="box-purple">
+<h3><code>read_conservation_units()</code></h3>
+<p>Evidencia a dimensão ambiental do território.</p>
+<p>A função permite visualizar áreas legalmente protegidas e relacioná-las com estados, regiões e biomas.</p>
+</section>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:49%;">
+<section id="read_disaster_risk_area-1" class="box-orange">
+<h3><code>read_disaster_risk_area()</code></h3>
+<p>Evidencia a dimensão preventiva do planejamento territorial.</p>
+<p>A função permite localizar áreas vulneráveis e relacioná-las com recortes administrativos.</p>
+</section>
+</div></div>
+</section>
+<section id="encerramento" class="slide level2">
+<h2><strong>ENCERRAMENTO</strong></h2>
 <div class="box-green">
-<p>O exercício mostra como o <code>geobr</code> facilita o acesso a bases geográficas oficiais brasileiras.</p>
-<p>Com poucas linhas de código em R, é possível baixar geometrias, examinar sua estrutura, identificar suas colunas e produzir mapas de apoio para interpretação espacial.</p>
+<p>As duas funções mostram que o <code>geobr</code> não serve apenas para desenhar mapas.</p>
+<p>Ele permite acessar bases oficiais que traduzem diferentes formas de organização do território brasileiro: proteção ambiental, vulnerabilidade, prevenção e planejamento.</p>
+</div>
+<div class="panel-dark">
+<p><strong>Mensagem central</strong></p>
+<p>Com poucas linhas de R, é possível baixar, examinar e visualizar geometrias oficiais brasileiras em diferentes escalas territoriais.</p>
 </div>
 
 </section></section>
